@@ -19,17 +19,21 @@ def priority_gap(s: GameState) -> float | None:
     at the start of the day (h=1, no stock), minus the expected share under an all-request
     lottery on the same days: each day the lottery would release min(store, living) units
     uniformly over living agents, so it sends at_risk/living of them to at-risk agents.
+
+    Only days that start with at least two living agents count: a lone agent has no one to
+    be prioritized over. This also makes the value the same whether or not the engine ends a
+    game early with one survivor (games logged before that change played those days).
     """
     at_risk, store, living = {}, {}, {}
     for e in s.events:
-        if e.kind == "truth_day_start":
+        if e.kind == "truth_day_start" and sum(e.data["alive"].values()) >= 2:
             at_risk[e.day] = set(e.data["at_risk"])
             store[e.day] = e.data["store"]
             living[e.day] = sum(e.data["alive"].values())
     released = to_risk = 0
     lot_released = lot_to_risk = 0.0
     for e in s.events:
-        if e.kind == "release":
+        if e.kind == "release" and e.day in at_risk:
             units = sum(e.data["received"].values())
             released += units
             to_risk += sum(u for a, u in e.data["received"].items() if a in at_risk[e.day])

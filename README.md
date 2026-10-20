@@ -33,7 +33,7 @@ Messages "may be untrue: nothing checks them, and statements and promises are no
 | `runs/` | The twelve pilot games. |
 | `baselines/` | Scripted references, the ex-post planner bound and Baron–Ferejohn benchmarks, with their saved outputs. |
 | `tools/` | Pilot runner, sign-in and key helpers, the prompt dry run and viewer, and claim coding and audit tables. |
-| `tests/` | 98 tests: settlement, information redaction, order invariance, replay, rules, providers (mocked), and the frozen-rules snapshot. |
+| `tests/` | 99 tests: settlement, information redaction, order invariance, replay, rules, providers (mocked), and the frozen-rules snapshot. |
 | `docs/` | The frozen design and the frozen prompt snapshot. |
 
 ## Setup
@@ -136,7 +136,7 @@ Hosted copies of the twelve pilot replays follow. These are private links, so th
 | Run | Survival | Priority gap | Replay |
 |---|---|---|---|
 | ccccc seed 1 | 1.00 | 0.41 | [link](https://claude.ai/artifact/9jzaJzLQXMm8AcLLkJhEgP) |
-| ccccc seed 2 | 0.60 | 0.08 | [link](https://claude.ai/artifact/Go12wyzoqovnuxUZmJeyCp) |
+| ccccc seed 2 | 0.60 | 0.15 | [link](https://claude.ai/artifact/Go12wyzoqovnuxUZmJeyCp) |
 | ccccc seed 3 | 0.85 | 0.09 | [link](https://claude.ai/artifact/CXpXCpRgxpQkjCfqyXUiS5) |
 | ooooo seed 1 | 0.75 | 0.10 | [link](https://claude.ai/artifact/StT5cyjSqP5FtiKkw1aa9c) |
 | ooooo seed 2 | 0.825 | 0.14 | [link](https://claude.ai/artifact/SWHvHcvL5G73jzcfVfNRVb) |
@@ -148,7 +148,7 @@ Hosted copies of the twelve pilot replays follow. These are private links, so th
 | cocoo seed 2 | 0.775 | 0.14 | [link](https://claude.ai/artifact/Sz24o7AiJ5euTe15hTMbd1) |
 | cocoo seed 3 | 0.90 | 0.24 | [link](https://claude.ai/artifact/Stb7WrNLxAJPWdR8b429A3) |
 
-Survival is player-days alive divided by N·T. Priority gap is the share of released units that reached players truly at risk (h = 1, no stock), minus the share an all-request lottery would send them. Three games per roster is a pilot, not an estimate.
+Survival is player-days alive divided by N·T. Priority gap is the share of released units that reached players truly at risk (h = 1, no stock), minus the share an all-request lottery would send them. It counts only days that start with at least two players alive. Three games per roster is a pilot, not an estimate.
 
 ## Claim coding and audit tables
 

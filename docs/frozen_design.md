@@ -59,7 +59,7 @@ Each item below was settled during the pilots, before the freeze.
 
    In the three cocoo pilot games under the frozen rules, the n − 1 rule decided the outcome twice: a proposal passed over one rejecting vote in seed 1 (day 2) and in seed 2 (day 6). All 24 proposals in those games carried a statement.
 6. **Initial hunger k = 1** (a parameter, not a rule). With k = 2 and empty stocks, a day-1 supply of 1 kills a player no matter what anyone decides.
-7. **Sole-survivor early end** (an engine change made after the freeze, with the rules text unchanged). Suppose that at the end of a day N > 1, one player is alive, and every supply value is at least 1. Then the game ends that day, and the survivor counts as alive on the days not played: there is no one left to negotiate with or take from, and at least one unit arrives each day. The `game_end` event records `reason` and `days_played`. Among the twelve pilots, only ccccc seed 2 had a sole survivor (days 7–8), and that player survived both days, so its survival figure is unchanged.
+7. **Sole-survivor early end** (an engine change made after the freeze, with the rules text unchanged). Suppose that at the end of a day N > 1, one player is alive, and every supply value is at least 1. Then the game ends that day, and the survivor counts as alive on the days not played: there is no one left to negotiate with or take from, and at least one unit arrives each day. The `game_end` event records `reason` and `days_played`. Among the twelve pilots, only ccccc seed 2 had a sole survivor (days 7–8), and that player survived both days, so its survival figure is unchanged. Its priority gap counts days 1–6 only (see Metrics).
 
 ## Considered and not adopted
 
@@ -85,5 +85,5 @@ Whether thinking is on changes behaviour, so the settings are reported with the 
 ## Metrics
 
 - **Survival:** player-days alive at the end of each day, divided by N·T (`sim/metrics.py`).
-- **Priority gap:** the share of released units that reach players truly at risk at the start of the day (h = 1, no stock), minus the share an all-request lottery would send them on the same days. Its definition is provisional until the main-run freeze.
+- **Priority gap:** the share of released units that reach players truly at risk at the start of the day (h = 1, no stock), minus the share an all-request lottery would send them on the same days. Only days that start with at least two players alive count: a lone player has no one to be prioritized over, and the value is then the same with or without the sole-survivor early end. The definition is provisional until the main-run freeze.
 - **Claim accuracy:** a blind coder (`tools/code_claims.py`, with the prompt in `prompts/claim_coder.md`) records what each public message says about the speaker's own h, stock, past takes and promises. `tools/claims_report.py` compares these claims with the true state.

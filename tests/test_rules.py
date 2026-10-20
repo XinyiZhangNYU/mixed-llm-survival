@@ -269,3 +269,17 @@ def test_game_continues_with_one_survivor_when_supply_can_be_zero():
     s = fresh(Config(n_agents=2, initially_hungry=1, days=4, rounds=1, supply_values=(0, 1)))
     _starve_day(s)
     assert len(s.living()) == 1 and s.phase != GAME_OVER and s.day == 2
+
+
+def test_priority_gap_skips_days_with_one_living_player():
+    from types import SimpleNamespace as E
+
+    from sim.metrics import priority_gap
+    day1 = [E(kind="truth_day_start", day=1, data={"at_risk": ["A"], "store": 2, "alive": {"A": True, "B": True}}),
+            E(kind="release", day=1, data={"received": {"A": 1}})]
+    # Day 2 has a lone player (a game logged before the sole-survivor stop played such days).
+    day2 = [E(kind="truth_day_start", day=2, data={"at_risk": [], "store": 1, "alive": {"A": True, "B": False}}),
+            E(kind="release", day=2, data={"received": {"A": 1}})]
+    # Day 1 only: 1 of 1 released units reached an at-risk player; the lottery sends 1 of 2.
+    assert priority_gap(E(events=day1)) == pytest.approx(0.5)
+    assert priority_gap(E(events=day1 + day2)) == pytest.approx(0.5)
