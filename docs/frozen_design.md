@@ -82,6 +82,8 @@ A seat's model and settings are parameters, and they stay fixed for a model thro
 
 Whether thinking is on changes behaviour, so the settings are reported with the results.
 
+The `openai_api` seat kind sends the same request to gpt-6.1-sol with the same settings through an OpenAI API key, for anyone without a ChatGPT plan. It exists for reproduction. The logged pilots and the main run use the ChatGPT-plan route, and `meta.json` records which route each seat used.
+
 ## Metrics
 
 - **Survival:** player-days alive at the end of each day, divided by N·T (`sim/metrics.py`).

@@ -254,6 +254,24 @@ class OpenAIPlanProvider:
         self.max_http_retries = max_http_retries
         self.reasoning_summary = reasoning_summary
 
+    def _bearer(self) -> str:
+        return access_token()
+
+    def _http_error(self, code: int, detail: str) -> bool:
+        """Raise for errors that must stop the run; True to retry, False to report the call as failed."""
+        if code == 429 or "usage_limit_exceeded" in detail:
+            raise PlanUsageLimit(f"HTTP {code}: {detail}")
+        return code in RETRY_STATUS
+
+    def _stream_error(self, code: str, err: str) -> bool:
+        """Same contract as _http_error, for an error reported inside the response stream."""
+        if code == "subscription_sharing_usage_limit_exceeded":
+            raise PlanUsageLimit(err)
+        return code in ("subscription_sharing_usage_unavailable", "subscription_sharing_user_unavailable")
+
+    def _add_cost(self, meta: dict) -> None:
+        """Plan calls report no price."""
+
     def _body(self, messages: list[dict]) -> dict:
         body = {"model": self.model, "instructions": messages[0]["content"],
                 "input": [{"role": m["role"], "content": m["content"]} for m in messages[1:]],
@@ -270,7 +288,7 @@ class OpenAIPlanProvider:
         """POST and read the SSE stream; returns the final response object."""
         req = urllib.request.Request(
             RESPONSES_URL, data=json.dumps(body).encode("utf-8"), method="POST",
-            headers={"authorization": f"Bearer {access_token()}", "content-type": "application/json",
+            headers={"authorization": f"Bearer {self._bearer()}", "content-type": "application/json",
                      "accept": "text/event-stream"})
         final, text, summary = None, [], {}
         event_counts = {}
@@ -332,9 +350,7 @@ class OpenAIPlanProvider:
             except urllib.error.HTTPError as e:
                 detail = e.read().decode("utf-8", errors="replace")[:500]
                 last_err = f"HTTP {e.code}: {detail}"
-                if e.code == 429 or "usage_limit_exceeded" in detail:
-                    raise PlanUsageLimit(last_err)
-                if e.code not in RETRY_STATUS:
+                if not self._http_error(e.code, detail):
                     return "", {"error": last_err}
             except (urllib.error.URLError, TimeoutError) as e:
                 last_err = f"network: {e}"
@@ -344,10 +360,7 @@ class OpenAIPlanProvider:
                 if ev != "response.completed":
                     code = err.get("code", "") if isinstance(err, dict) else ""
                     last_err = f"{ev}: {json.dumps(err)[:500]}"
-                    if code == "subscription_sharing_usage_limit_exceeded":
-                        raise PlanUsageLimit(last_err)
-                    if code not in ("subscription_sharing_usage_unavailable",
-                                    "subscription_sharing_user_unavailable") and ev != "stream_ended":
+                    if not self._stream_error(code, last_err) and ev != "stream_ended":
                         return data["_text"], {"error": last_err, "request_id": data["_request_id"]}
                 else:
                     break
@@ -375,4 +388,5 @@ class OpenAIPlanProvider:
         }
         if thinking:
             meta["thinking"] = thinking
+        self._add_cost(meta)
         return text, meta

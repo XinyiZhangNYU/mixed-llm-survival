@@ -10,8 +10,9 @@ Two views, switchable on the page:
                private notices, each seat's private `reasoning` field, and provider thinking summaries.
   Public view  only events visible to all seats, i.e. what every seat could see.
 
-The runner rebuilds the page at the end of every day, so an unfinished game can be watched
-(the page reloads itself every 15 s until the game ends). Reads logs only; nothing is re-run.
+The runner writes the page before the first request and rebuilds it after every step (each
+message, proposal, vote, transfer and meal), so an unfinished game can be watched as it is
+played (the page reloads itself every 15 s until the game ends). Reads logs only; nothing is re-run.
 
 Usage: python -m sim.replay_html <run_dir> [<run_dir> ...]
 """

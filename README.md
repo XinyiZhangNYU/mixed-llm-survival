@@ -27,13 +27,13 @@ Messages "may be untrue: nothing checks them, and statements and promises are no
 | Path | Contents |
 |---|---|
 | `sim/` | Engine. It covers configuration (`config.py`), game state (`state.py`), the phase machine and settlement (`engine.py`), and named random streams so every roster sees the same supply and hunger on a given seed (`rng.py`). It also covers per-player observations (`observe.py`), the rules and request text (`render.py`), reply schemas (`schemas.py`), the async game runner with JSONL logs and checkpoints (`runner.py`), metrics (`metrics.py`) and the replay page (`replay_html.py`). |
-| `sim/agents/` | Player interfaces. These are the model providers (`anthropic_api.py`, `openai_plan.py`, `deepseek_api.py`, `cli.py`) and the scripted reference players (`scripted.py`). |
+| `sim/agents/` | Player interfaces. These are the model providers (`anthropic_api.py`, `openai_plan.py`, `openai_api.py`, `deepseek_api.py`, `cli.py`) and the scripted reference players (`scripted.py`). |
 | `configs/` | `pilot_n5_v2.yaml` (the pilots: N = 5, T = 8, supply {1, 2, 3, 4}) and `main.yaml` (the main condition, with the same frozen rules). |
 | `prompts/` | `rules_en.md` (the rules template every seat receives) and `claim_coder.md` (the prompt of the blind claim coder). |
 | `runs/` | The twelve pilot games. |
 | `baselines/` | Scripted references, the ex-post planner bound and Baron–Ferejohn benchmarks, with their saved outputs. |
-| `tools/` | Pilot runner, sign-in and key helpers, the prompt dry run and viewer, and claim coding and audit tables. |
-| `tests/` | 99 tests: settlement, information redaction, order invariance, replay, rules, providers (mocked), and the frozen-rules snapshot. |
+| `tools/` | Pilot runner, sign-in and key helpers, the OpenAI API key check, the prompt dry run and viewer, and claim coding and audit tables. |
+| `tests/` | 110 tests: settlement, information redaction, order invariance, replay, rules, providers (mocked), and the frozen-rules snapshot. |
 | `docs/` | The frozen design and the frozen prompt snapshot. |
 
 ## Setup
@@ -56,7 +56,8 @@ No keys are stored in this repository. The providers look for credentials in the
 |---|---|
 | `claude` | `ANTHROPIC_API_KEY`, or the file `~/.gt6263/anthropic_api_key` |
 | `deepseek` | `DEEPSEEK_API_KEY`, or the file `~/.gt6263/deepseek_api_key`. `python tools/save_deepseek_key.py` prompts for the key with hidden input, checks it, and saves it. |
-| `openai` | A ChatGPT plan, through OpenAI's Sign in with ChatGPT flow for locally hosted apps. Run `python tools/chatgpt_plan_login.py` once: it opens the browser and stores the tokens in `~/.gt6263/chatgpt_plan/`. Use `start` / `finish URL` to sign in from another device. |
+| `openai` | A ChatGPT plan, through OpenAI's Sign in with ChatGPT flow for locally hosted apps. Run `python tools/chatgpt_plan_login.py` once: it opens the browser and stores the tokens in `~/.gt6263/chatgpt_plan/`. Use `start` / `finish URL` to sign in from another device. The logged games used this route. |
+| `openai_api` | `OPENAI_API_KEY`, or the file `~/.gt6263/openai_api_key`. Same model, settings and request body as `openai`, billed to the API account. Run `python tools/check_openai_api.py` first (see [Without a ChatGPT plan](#without-a-chatgpt-plan)). |
 
 ## Check the installation
 
@@ -64,7 +65,7 @@ No keys are stored in this repository. The providers look for credentials in the
 python -m pytest tests -q
 ```
 
-All 98 tests should pass. `tests/test_frozen_rules.py` plays a dry-run game and compares every seat's full conversation with `docs/frozen_rules_20261018/`, so any change to the rules text or request wording fails the suite.
+All 110 tests should pass. `tests/test_frozen_rules.py` plays a dry-run game and compares every seat's full conversation with `docs/frozen_rules_20261018/`, so any change to the rules text or request wording fails the suite.
 
 To see exactly what the models are sent, without calling any model:
 
@@ -80,7 +81,7 @@ python tools/show_prompt.py runs/pilot_n5_v2_cocoo_seed1 A --days 2
 
 ## Reproduce the pilot games
 
-The pilots used `configs/pilot_n5_v2.yaml`, seeds 1–3, and four rosters. The roster tag lists the seat kinds of seats A to E: `c` is claude, `o` is openai, `d` is deepseek.
+The pilots used `configs/pilot_n5_v2.yaml`, seeds 1–3, and four rosters. The roster tag lists the seat kinds of seats A to E: `c` is claude, `o` is openai (either route), `d` is deepseek.
 
 | Tag | `--seats` |
 |---|---|
@@ -95,7 +96,7 @@ One game:
 python tools/run_pilot.py configs/pilot_n5_v2.yaml --seats A=claude,B=openai,C=claude,D=openai,E=openai --seed 1 --cap 3 --out runs/repro_cocoo_seed1
 ```
 
-By default `--out` is `runs/pilot_n5_v2_<tag>_seed<S>`. The script refuses a folder that already holds a run, so pass a new `--out` to keep the logged games. `--cap` stops the game between steps before the estimated Anthropic plus DeepSeek spend would exceed that many US dollars. ChatGPT-plan calls report no price. The logged pilots cost about $0.7–1.1 per ccccc game, $0.3–0.4 per cocoo game and $0.2–0.4 per ddddd game.
+By default `--out` is `runs/pilot_n5_v2_<tag>_seed<S>`. The script refuses a folder that already holds a run, so pass a new `--out` to keep the logged games. `--cap` stops the game between steps before the estimated API spend (Anthropic, DeepSeek and OpenAI API) would exceed that many US dollars. ChatGPT-plan calls report no price. The logged pilots cost about $0.7–1.1 per ccccc game, $0.3–0.4 per cocoo game and $0.2–0.4 per ddddd game.
 
 All twelve games (bash):
 
@@ -107,6 +108,25 @@ for s in 1 2 3; do
   python tools/run_pilot.py configs/pilot_n5_v2.yaml --seats A=claude,B=openai,C=claude,D=openai,E=openai --seed $s --out runs/repro_cocoo_seed$s
 done
 ```
+
+### Without a ChatGPT plan
+
+Use the seat kind `openai_api` wherever a command says `openai`, with an OpenAI API key (see [Credentials](#credentials-for-live-seats)). It sends the same request to the same model with the same settings; only the credential and the billing differ. `meta.json` records the route of each seat (`openai-api:gpt-6.1-sol` instead of `openai-plan:gpt-6.1-sol`).
+
+1. Check that the key can run the seat. This sends one short request with the seat's exact settings and costs well under one cent:
+
+   ```bash
+   python tools/check_openai_api.py
+   ```
+
+   It stops with the API's message if the key is missing or invalid, the account cannot use `gpt-6.1-sol`, or the account cannot get reasoning summaries.
+2. Run games as above, for example:
+
+   ```bash
+   python tools/run_pilot.py configs/pilot_n5_v2.yaml --seats A=claude,B=openai_api,C=claude,D=openai_api,E=openai_api --seed 1 --cap 5 --out runs/repro_cocoo_api_seed1
+   ```
+
+Priced at standard API rates, the logged games' token counts come to $3.7–4.2 per all-`gpt-6.1-sol` game and $2.4–3.0 per cocoo game (Claude seats included), so set `--cap` above the default of 3. The estimate prices uncached input at the $2.50 cache-write rate rather than the $2.00 input rate, so it errs high. During a game, a bad key, a missing model or an exhausted balance stops the run with an error rather than letting seats fall back to default actions. Rate limits are retried.
 
 **What reproduces exactly and what does not.** Some things depend only on the engine and the seed: the supply sequence, who starts hungry, the first proposer, and every random draw (fallback lottery, transfer contention, thief reveal). These are identical across rosters and reruns on a given seed, and that is what makes the rosters comparable. The models' replies are not deterministic, so a rerun produces a new game on the same environment, not a copy of the logged one. The logs in `runs/` are the record of the games reported.
 
@@ -125,13 +145,38 @@ done
 
 ## Replays (progress boards)
 
-Each run folder has a `replay.html` that opens offline in any browser. The page follows the game as a moderator would. **God view** shows the hidden truth (hunger, stocks, transfers, meals, reasoning), and **Public view** shows only what every seat could see. The page is in English, and the CN button switches its labels to Chinese. The runner rebuilds the page during a game. To rebuild one by hand:
+Each run folder has a `replay.html`. The page follows the game as a moderator would. **God view** shows the hidden truth (hunger, stocks, transfers, meals, reasoning), and **Public view** shows only what every seat could see. The page is in English, and the CN button switches its labels to Chinese.
+
+### Open a replay
+
+GitHub shows an `.html` file as source code, so clicking `replay.html` on github.com does not show the page. Open the local copy instead. It is a single self-contained file and needs no install, server or network.
+
+1. Get the repository. Either click **Code → Download ZIP** on the repository page and unzip it, or clone it:
+
+   ```bash
+   git clone https://github.com/XinyiZhangNYU/mixed-llm-survival.git
+   ```
+
+2. Open the folder of one game, for example `runs/pilot_n5_v2_cocoo_seed1/`.
+3. Double-click `replay.html`. It opens in your default browser (Chrome, Edge, Firefox or Safari). If another program opens it, right-click it and choose **Open with** and then a browser.
+
+### Watch a game while it runs
+
+You can follow a game started with `tools/run_pilot.py` from day 1:
+
+1. Start the game. Its folder is the `--out` path, or `runs/pilot_n5_v2_<tag>_seed<S>` by default.
+2. Open `replay.html` in that folder, as above. The runner writes the page before the first model reply, then rebuilds it after every step: each message, proposal, vote, transfer and meal.
+3. Leave the page open. While the game runs it shows **Game in progress**, reloads itself every 15 seconds, and scrolls to the latest entry. It stops reloading when the game ends.
+
+To rebuild a page from a run's logs by hand:
 
 ```bash
 python -m sim.replay_html runs/pilot_n5_v2_cocoo_seed1
 ```
 
-Hosted copies of the twelve pilot replays follow. These are private links, so they open only for accounts they have been shared with. The local files are identical.
+### Hosted copies
+
+The links below open hosted copies of the twelve pilot replays. They are private and open only for accounts they have been shared with. The local files are identical.
 
 | Run | Survival | Priority gap | Replay |
 |---|---|---|---|

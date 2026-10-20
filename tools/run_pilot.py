@@ -8,13 +8,16 @@ Seat kinds (settings fixed here for the pilot):
   claude  Anthropic API, claude-sonnet-5-5, effort high, thinking summaries on
           (at medium it did no thinking on game turns)
   openai  ChatGPT plan, gpt-6.1-sol, reasoning effort xhigh, reasoning summaries on
+  openai_api  OpenAI API key, same model and settings as openai (for anyone without a
+          ChatGPT plan sign-in); the roster tag letter is o for both routes, and meta.json
+          records which route a seat used
   opus    Anthropic API, claude-opus-5-5, effort high, thinking summaries on
   astra   ChatGPT plan, gpt-6-astra, reasoning effort xhigh, reasoning summaries on
   deepseek DeepSeek API, deepseek-flash (DeepSeek-V4.1-Flash-1017), thinking on, reasoning
           effort high (its levels are low/high/max; xhigh maps to high); raw chain of
           thought is logged
 
-The cost cap counts Anthropic and DeepSeek API spending (plan calls report no price).
+The cost cap counts Anthropic, DeepSeek and OpenAI API spending (plan calls report no price).
 """
 import asyncio
 import json
@@ -25,6 +28,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from sim.agents import LLMAgent  # noqa: E402
 from sim.agents.anthropic_api import AnthropicAPIProvider  # noqa: E402
 from sim.agents.deepseek_api import DeepSeekAPIProvider  # noqa: E402
+from sim.agents.openai_api import OpenAIAPIProvider  # noqa: E402
 from sim.agents.openai_plan import OpenAIPlanProvider  # noqa: E402
 from sim.config import Config  # noqa: E402
 from sim.runner import run_game  # noqa: E402
@@ -35,7 +39,11 @@ SONNET_PRICE = {"input": 2.0, "output": 10.0, "cache_write": 2.5, "cache_read": 
 OPUS_PRICE = {"input": 4.0, "output": 20.0, "cache_write": 5.0, "cache_read": 0.20}
 # DeepSeek V4.1 Flash, off-peak USD rates (pricing page, 2026-10-18); peak calls cost double.
 DEEPSEEK_PRICE = {"input": 0.15, "cache_hit": 0.003, "output": 0.6}
-TAG = {"claude": "c", "openai": "o", "opus": "p", "astra": "a", "deepseek": "d"}
+# gpt-6.1-sol, standard tier, prompts under 272K tokens (developers.openai.com pricing,
+# 2026-10-20). Uncached input is priced at the $2.50 cache-write rate instead of the $2.00
+# input rate, so the cap errs high.
+SOL_API_PRICE = {"input": 2.5, "cached_input": 0.10, "output": 10.0}
+TAG = {"claude": "c", "openai": "o", "openai_api": "o", "opus": "p", "astra": "a", "deepseek": "d"}
 
 
 def provider(kind: str):
@@ -49,6 +57,9 @@ def provider(kind: str):
                                     price_per_mtok=OPUS_PRICE)
     if kind == "openai":
         return OpenAIPlanProvider("gpt-6.1-sol", reasoning_effort="xhigh", reasoning_summary="auto")
+    if kind == "openai_api":
+        return OpenAIAPIProvider("gpt-6.1-sol", reasoning_effort="xhigh", reasoning_summary="auto",
+                                 price_per_mtok=SOL_API_PRICE)
     if kind == "astra":
         return OpenAIPlanProvider("gpt-6-astra", reasoning_effort="xhigh", reasoning_summary="auto")
     if kind == "deepseek":

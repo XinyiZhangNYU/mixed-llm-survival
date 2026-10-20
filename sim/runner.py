@@ -10,7 +10,8 @@ Log directory layout (when log_dir is given):
   actions.jsonl    the final action batch of each step (input for replay)
   checkpoint.json  game state after the latest step
   result.json      outcome summary
-  replay.html      moderator-style replay page (sim/replay_html.py), rebuilt at key events
+  replay.html      moderator-style replay page (sim/replay_html.py), written before the first
+                   request and rebuilt after every step, so each message and vote shows up live
 
 run_game can stop early at a cost cap (provider-reported cost_usd). It stops only between
 steps, so checkpoint.json and actions.jsonl stay consistent, and result.json records the stop.
@@ -31,9 +32,6 @@ from .metrics import summarize
 from .observe import observe
 from .replay_html import build as build_replay
 from .state import GameState
-
-
-REPLAY_TRIGGERS = {"day_start", "release", "deaths", "game_end"}
 
 
 class RunLogger:
@@ -75,11 +73,12 @@ class RunLogger:
                                        "round": rnd, "actions": actions})
         self.events(events)
         self._write("checkpoint.json", s.to_dict())
-        if any(ev.kind in REPLAY_TRIGGERS for ev in events):
-            self.replay()
+        self.replay()   # a full rebuild takes tens of milliseconds, small next to a model call
 
     def replay(self):
         # The page is a view of the logs; a failure here must never stop a run.
+        if not self.dir:
+            return
         try:
             build_replay(self.dir)
         except Exception:
@@ -149,6 +148,7 @@ def _setup(cfg, roster, seed, log):
         ag.start_game(a, cfg, seed)
     log.meta(cfg, seed, roster)
     log.events(s.events)
+    log.replay()   # the page exists from day 1, before the first model call returns
     return s, {a: -1 for a in cfg.agent_ids}
 
 
