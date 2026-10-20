@@ -1,0 +1,21 @@
+# Pilot v2 at N = 5, T = 8 (2026-10-18). Supply keeps the
+# N = 4 pilot's ratio of mean supply to the minimum need of N / 2 units per day (one meal every
+# second day): mean 2.5 here, as mean 2 was for four players.
+n_agents: 5
+days: 8
+rounds: 2
+supply_values: [1, 2, 3, 4]
+supply_feasible_only: false
+disclose_supply_values: false
+initially_hungry: 1
+q_reveal_thief: 0.5            # OPEN
+message_order: sequential      # OPEN
+message_passes: 2              # OPEN
+vote_rule: all_but_one         # OPEN
+proposal_statement: true       # OPEN
+deliberation_prompt: true      # OPEN
+public_record: true            # OPEN
+votes_public: true             # OPEN
+gift_reveals_giver: true       # OPEN
+allocation_must_exhaust_store: false  # OPEN
+max_retries: 2                 # OPEN

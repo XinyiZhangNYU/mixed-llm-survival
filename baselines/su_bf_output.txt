@@ -1,0 +1,189 @@
+Config: configs/pilot_n5_v2.yaml (N=5, T=8, R=2, supply [1, 2, 3, 4] i.i.d., vote all_but_one)
+
+[need-first, efficient] day 4, five alive, no stocks; cell = proposer units / units released / store left ('fb' = no round-1 agreement)
+  m\S          1         2         3         4         5         6         7         8
+    0      0/0/1     0/0/2     0/0/3     0/0/4     0/0/5     0/0/6     0/0/7     0/0/8
+    1      0/0/1     1/1/1     0/0/3     2/2/2     0/0/5     0/0/6     0/1/6     0/1/7
+    2         fb        fb     0/1/2     0/3/1     0/1/4   0-2/6/0     0/2/5     0/2/6
+    3         fb        fb     0/2/1   0-2/4/0   0-2/5/0   0-2/5/1     0/3/4     0/3/5
+    4         fb        fb     0/3/0     0/4/0     0/4/1     0/4/2     0/4/3     0/4/4
+    5         fb        fb        fb     1/4/0     2/5/0     3/6/0     3/7/0     3/7/1
+
+[need-first, efficient] observed proposals vs benchmark from the same day's true state
+  run day rnd S n | observed: own released h1-unfed | benchmark: agree own released h1-unfed
+  cocoo_seed1  d1 r1 S2 n5 | 1 2 0 | agree 1 1 1
+  cocoo_seed1  d2 r1 S4 n5 | 2 4 0 | agree 1 4 1
+  cocoo_seed1  d3 r1 S4 n4 | 1 4 0 | agree 0 0 1
+  cocoo_seed1  d4 r1 S2 n4 | 0 1 0 | agree 0 0 0
+  cocoo_seed1  d5 r1 S3 n3 | 1 3 0 | agree 0 0 0
+  cocoo_seed1  d6 r1 S2 n3 | 0 2 0 | agree 0 0 0
+  cocoo_seed1  d7 r1 S3 n3 | 1 3 0 | agree 0 1 0
+  cocoo_seed1  d8 r1 S2 n3 | 0 0 0 | agree 0 0 0
+  cocoo_seed2  d1 r1 S4 n5 | 1 4 0 | agree 0 0 1
+  cocoo_seed2  d2 r1 S4 n5 | 1 4 0 | agree 0 3 1
+  cocoo_seed2  d3 r1 S3 n5 | 1 3 0 | agree 2 2 1
+  cocoo_seed2  d4 r1 S1 n5 | 0 1 0 | agree 0 0 1
+  cocoo_seed2  d5 r1 S1 n5 | 0 1 1 | fallback
+  cocoo_seed2  d6 r1 S1 n4 | 0 1 1 | fallback
+  cocoo_seed2  d7 r1 S4 n3 | 1 3 0 | agree 0 1 0
+  cocoo_seed2  d8 r1 S2 n2 | 1 2 0 | agree 0 0 0
+  cocoo_seed3  d1 r1 S4 n5 | 1 4 0 | agree 0 0 1
+  cocoo_seed3  d2 r1 S2 n5 | 0 2 0 | agree 2 2 1
+  cocoo_seed3  d3 r1 S1 n5 | 0 1 0 | agree 1 1 1
+  cocoo_seed3  d4 r1 S4 n5 | 1 4 0 | agree 2 4 0
+  cocoo_seed3  d5 r1 S2 n5 | 1 2 0 | agree 0 0 0
+  cocoo_seed3  d6 r1 S4 n4 | 1 4 0 | agree 0 1 0
+  cocoo_seed3  d7 r1 S1 n4 | 0 1 0 | agree 0 0 0
+  cocoo_seed3  d8 r1 S4 n4 | 0 4 0 | agree 0 1 0
+  ddddd_seed1  d1 r1 S2 n5 | 0 1 0 | agree 1 1 1
+  ddddd_seed1  d2 r1 S5 n5 | 1 4 0 | agree 3 5 1
+  ddddd_seed1  d3 r1 S5 n4 | 1 3 0 | agree 0 0 0
+  ddddd_seed1  d4 r1 S4 n4 | 1 1 0 | agree 1 1 0
+  ddddd_seed1  d5 r1 S5 n4 | 1 3 0 | agree 1 2 0
+  ddddd_seed1  d6 r1 S4 n4 | 0 1 0 | agree 0 1 0
+  ddddd_seed1  d7 r1 S6 n3 | 1 3 0 | agree 0 1 0
+  ddddd_seed1  d8 r1 S5 n3 | 1 3 0 | agree 0 1 0
+  summary: {'n': 32, 'own<': 6, 'own=': 10, 'own>': 14, 'rel<': 1, 'rel=': 8, 'rel>': 21, 'fb_pred': 2, 'unfed_obs': 2, 'unfed_pred': 12}
+
+[need-first, efficient] 200 seeds played by the benchmark: survival 0.60, all alive 0.00, deaths 2.14, priority gap 0.40; seeds 1/2/3: 0.62 / 0.80 / 0.62
+
+[need-first, minimal] day 4, five alive, no stocks; cell = proposer units / units released / store left ('fb' = no round-1 agreement)
+  m\S          1         2         3         4         5         6         7         8
+    0      0/0/1     0/0/2     0/0/3     0/0/4     0/0/5     0/0/6     0/0/7     0/0/8
+    1      0/0/1     1/1/1     0/0/3     2/2/2     0/0/5     0/0/6     0/0/7     0/0/8
+    2         fb        fb     0/1/2     0/3/1     0/1/4     0/1/5     0/1/6     0/1/7
+    3         fb        fb     0/2/1   0-2/4/0     0/2/3     0/2/4     0/2/5     0/2/6
+    4         fb        fb     0/3/0     0/3/1     0/3/2     0/3/3     0/3/4     0/3/5
+    5         fb        fb        fb     1/4/0     2/5/0     3/6/0     3/6/1     1/4/4
+
+[need-first, minimal] observed proposals vs benchmark from the same day's true state
+  run day rnd S n | observed: own released h1-unfed | benchmark: agree own released h1-unfed
+  cocoo_seed1  d1 r1 S2 n5 | 1 2 0 | agree 1 1 1
+  cocoo_seed1  d2 r1 S4 n5 | 2 4 0 | agree 1 4 1
+  cocoo_seed1  d3 r1 S4 n4 | 1 4 0 | agree 0 0 1
+  cocoo_seed1  d4 r1 S2 n4 | 0 1 0 | agree 0 0 0
+  cocoo_seed1  d5 r1 S3 n3 | 1 3 0 | agree 0 0 0
+  cocoo_seed1  d6 r1 S2 n3 | 0 2 0 | agree 0 0 0
+  cocoo_seed1  d7 r1 S3 n3 | 1 3 0 | agree 0 0 1
+  cocoo_seed1  d8 r1 S2 n3 | 0 0 0 | agree 0 0 0
+  cocoo_seed2  d1 r1 S4 n5 | 1 4 0 | agree 0 0 1
+  cocoo_seed2  d2 r1 S4 n5 | 1 4 0 | agree 0 3 1
+  cocoo_seed2  d3 r1 S3 n5 | 1 3 0 | agree 2 2 1
+  cocoo_seed2  d4 r1 S1 n5 | 0 1 0 | agree 0 0 1
+  cocoo_seed2  d5 r1 S1 n5 | 0 1 1 | fallback
+  cocoo_seed2  d6 r1 S1 n4 | 0 1 1 | fallback
+  cocoo_seed2  d7 r1 S4 n3 | 1 3 0 | agree 0 0 1
+  cocoo_seed2  d8 r1 S2 n2 | 1 2 0 | agree 0 0 0
+  cocoo_seed3  d1 r1 S4 n5 | 1 4 0 | agree 0 0 1
+  cocoo_seed3  d2 r1 S2 n5 | 0 2 0 | agree 2 2 1
+  cocoo_seed3  d3 r1 S1 n5 | 0 1 0 | agree 1 1 1
+  cocoo_seed3  d4 r1 S4 n5 | 1 4 0 | agree 2 4 0
+  cocoo_seed3  d5 r1 S2 n5 | 1 2 0 | agree 0 0 0
+  cocoo_seed3  d6 r1 S4 n4 | 1 4 0 | agree 0 0 1
+  cocoo_seed3  d7 r1 S1 n4 | 0 1 0 | agree 0 0 0
+  cocoo_seed3  d8 r1 S4 n4 | 0 4 0 | agree 0 0 1
+  ddddd_seed1  d1 r1 S2 n5 | 0 1 0 | agree 1 1 1
+  ddddd_seed1  d2 r1 S5 n5 | 1 4 0 | agree 3 5 1
+  ddddd_seed1  d3 r1 S5 n4 | 1 3 0 | agree 0 0 0
+  ddddd_seed1  d4 r1 S4 n4 | 1 1 0 | agree 1 1 0
+  ddddd_seed1  d5 r1 S5 n4 | 1 3 0 | agree 1 1 1
+  ddddd_seed1  d6 r1 S4 n4 | 0 1 0 | agree 0 0 1
+  ddddd_seed1  d7 r1 S6 n3 | 1 3 0 | agree 0 0 1
+  ddddd_seed1  d8 r1 S5 n3 | 1 3 0 | agree 0 0 1
+  summary: {'n': 32, 'own<': 6, 'own=': 10, 'own>': 14, 'rel<': 1, 'rel=': 7, 'rel>': 22, 'fb_pred': 2, 'unfed_obs': 2, 'unfed_pred': 20}
+
+[need-first, minimal] 200 seeds played by the benchmark: survival 0.45, all alive 0.00, deaths 3.35, priority gap 0.29; seeds 1/2/3: 0.50 / 0.50 / 0.50
+
+[lottery, efficient] day 4, five alive, no stocks; cell = proposer units / units released / store left ('fb' = no round-1 agreement)
+  m\S          1         2         3         4         5         6         7         8
+    0      0/0/1     0/0/2     1/1/2     1/1/3     1/1/4     1/1/5     1/1/6     0/0/8
+    1      0/0/1     1/1/1     1/1/2     1/1/3     2/5/0     1/2/4     1/2/5     1/2/6
+    2         fb     0/1/1     0/1/2     1/4/0     2/5/0     2/5/1     1/3/4     1/3/5
+    3         fb        fb        fb     1/4/0     2/5/0     2/5/1     2/5/2     1/4/4
+    4         fb        fb        fb     1/4/0     2/5/0     2/6/0     2/6/1     2/6/2
+    5         fb        fb        fb     1/4/0     2/5/0     3/6/0     3/7/0     3/7/1
+
+[lottery, efficient] observed proposals vs benchmark from the same day's true state
+  run day rnd S n | observed: own released h1-unfed | benchmark: agree own released h1-unfed
+  cocoo_seed1  d1 r1 S2 n5 | 1 2 0 | agree 1 1 1
+  cocoo_seed1  d2 r1 S4 n5 | 2 4 0 | agree 1 4 1
+  cocoo_seed1  d3 r1 S4 n4 | 1 4 0 | agree 2 2 1
+  cocoo_seed1  d4 r1 S2 n4 | 0 1 0 | agree 0 0 0
+  cocoo_seed1  d5 r1 S3 n3 | 1 3 0 | agree 1 1 0
+  cocoo_seed1  d6 r1 S2 n3 | 0 2 0 | agree 0 0 0
+  cocoo_seed1  d7 r1 S3 n3 | 1 3 0 | agree 0 1 0
+  cocoo_seed1  d8 r1 S2 n3 | 0 0 0 | agree 0 0 0
+  cocoo_seed2  d1 r1 S4 n5 | 1 4 0 | agree 1 4 0
+  cocoo_seed2  d2 r1 S4 n5 | 1 4 0 | agree 1 4 0
+  cocoo_seed2  d3 r1 S3 n5 | 1 3 0 | agree 2 2 1
+  cocoo_seed2  d4 r1 S1 n5 | 0 1 0 | agree 0 0 1
+  cocoo_seed2  d5 r1 S1 n5 | 0 1 1 | fallback
+  cocoo_seed2  d6 r1 S1 n4 | 0 1 1 | fallback
+  cocoo_seed2  d7 r1 S4 n3 | 1 3 0 | agree 0 1 0
+  cocoo_seed2  d8 r1 S2 n2 | 1 2 0 | agree 0 0 0
+  cocoo_seed3  d1 r1 S4 n5 | 1 4 0 | agree 1 4 0
+  cocoo_seed3  d2 r1 S2 n5 | 0 2 0 | agree 1 1 1
+  cocoo_seed3  d3 r1 S1 n5 | 0 1 0 | agree 0 0 1
+  cocoo_seed3  d4 r1 S4 n5 | 1 4 0 | agree 1 4 1
+  cocoo_seed3  d5 r1 S2 n5 | 1 2 0 | agree 0 0 0
+  cocoo_seed3  d6 r1 S4 n4 | 1 4 0 | agree 0 1 0
+  cocoo_seed3  d7 r1 S1 n4 | 0 1 0 | agree 0 1 0
+  cocoo_seed3  d8 r1 S4 n4 | 0 4 0 | agree 0 1 0
+  ddddd_seed1  d1 r1 S2 n5 | 0 1 0 | agree 1 1 1
+  ddddd_seed1  d2 r1 S5 n5 | 1 4 0 | agree 2 5 1
+  ddddd_seed1  d3 r1 S5 n4 | 1 3 0 | agree 1 1 0
+  ddddd_seed1  d4 r1 S4 n4 | 1 1 0 | agree 3 4 0
+  ddddd_seed1  d5 r1 S5 n4 | 1 3 0 | agree 1 2 0
+  ddddd_seed1  d6 r1 S4 n4 | 0 1 0 | agree 0 1 0
+  ddddd_seed1  d7 r1 S6 n3 | 1 3 0 | agree 0 1 0
+  ddddd_seed1  d8 r1 S5 n3 | 1 3 0 | agree 0 1 0
+  summary: {'n': 32, 'own<': 6, 'own=': 16, 'own>': 8, 'rel<': 2, 'rel=': 9, 'rel>': 19, 'fb_pred': 2, 'unfed_obs': 2, 'unfed_pred': 10}
+
+[lottery, efficient] 200 seeds played by the benchmark: survival 0.60, all alive 0.00, deaths 2.23, priority gap 0.33; seeds 1/2/3: 0.62 / 0.93 / 0.68
+
+[lottery, minimal] day 4, five alive, no stocks; cell = proposer units / units released / store left ('fb' = no round-1 agreement)
+  m\S          1         2         3         4         5         6         7         8
+    0      0/0/1     0/0/2     1/1/2     1/1/3     1/1/4     1/1/5     1/1/6     0/0/8
+    1      0/0/1     1/1/1     1/1/2     1/1/3     1/1/4     0/0/6     0/0/7     0/0/8
+    2         fb     0/1/1     0/1/2     1/4/0     1/5/0     2/6/0     0/1/6     0/1/7
+    3         fb        fb        fb     1/4/0     2/5/0     2/5/1     1/4/3     0/2/6
+    4         fb        fb        fb     1/4/0     2/5/0     2/5/1     1/4/3     1/4/4
+    5         fb        fb        fb     1/4/0     2/5/0     3/6/0     3/6/1     2/5/3
+
+[lottery, minimal] observed proposals vs benchmark from the same day's true state
+  run day rnd S n | observed: own released h1-unfed | benchmark: agree own released h1-unfed
+  cocoo_seed1  d1 r1 S2 n5 | 1 2 0 | agree 1 1 1
+  cocoo_seed1  d2 r1 S4 n5 | 2 4 0 | agree 1 4 1
+  cocoo_seed1  d3 r1 S4 n4 | 1 4 0 | agree 2 2 1
+  cocoo_seed1  d4 r1 S2 n4 | 0 1 0 | agree 0 0 0
+  cocoo_seed1  d5 r1 S3 n3 | 1 3 0 | agree 1 1 0
+  cocoo_seed1  d6 r1 S2 n3 | 0 2 0 | agree 0 0 0
+  cocoo_seed1  d7 r1 S3 n3 | 1 3 0 | agree 0 0 1
+  cocoo_seed1  d8 r1 S2 n3 | 0 0 0 | agree 0 0 0
+  cocoo_seed2  d1 r1 S4 n5 | 1 4 0 | agree 1 4 0
+  cocoo_seed2  d2 r1 S4 n5 | 1 4 0 | agree 1 4 0
+  cocoo_seed2  d3 r1 S3 n5 | 1 3 0 | agree 2 2 1
+  cocoo_seed2  d4 r1 S1 n5 | 0 1 0 | agree 0 0 1
+  cocoo_seed2  d5 r1 S1 n5 | 0 1 1 | fallback
+  cocoo_seed2  d6 r1 S1 n4 | 0 1 1 | fallback
+  cocoo_seed2  d7 r1 S4 n3 | 1 3 0 | agree 0 0 1
+  cocoo_seed2  d8 r1 S2 n2 | 1 2 0 | agree 0 0 0
+  cocoo_seed3  d1 r1 S4 n5 | 1 4 0 | agree 1 4 0
+  cocoo_seed3  d2 r1 S2 n5 | 0 2 0 | agree 1 1 1
+  cocoo_seed3  d3 r1 S1 n5 | 0 1 0 | agree 0 0 1
+  cocoo_seed3  d4 r1 S4 n5 | 1 4 0 | agree 1 4 1
+  cocoo_seed3  d5 r1 S2 n5 | 1 2 0 | agree 0 0 0
+  cocoo_seed3  d6 r1 S4 n4 | 1 4 0 | agree 0 0 1
+  cocoo_seed3  d7 r1 S1 n4 | 0 1 0 | agree 0 0 0
+  cocoo_seed3  d8 r1 S4 n4 | 0 4 0 | agree 0 0 1
+  ddddd_seed1  d1 r1 S2 n5 | 0 1 0 | agree 1 1 1
+  ddddd_seed1  d2 r1 S5 n5 | 1 4 0 | agree 2 5 1
+  ddddd_seed1  d3 r1 S5 n4 | 1 3 0 | agree 1 1 0
+  ddddd_seed1  d4 r1 S4 n4 | 1 1 0 | agree 1 4 0
+  ddddd_seed1  d5 r1 S5 n4 | 1 3 0 | agree 1 1 1
+  ddddd_seed1  d6 r1 S4 n4 | 0 1 0 | agree 0 0 1
+  ddddd_seed1  d7 r1 S6 n3 | 1 3 0 | agree 0 0 1
+  ddddd_seed1  d8 r1 S5 n3 | 1 3 0 | agree 0 0 1
+  summary: {'n': 32, 'own<': 5, 'own=': 17, 'own>': 8, 'rel<': 2, 'rel=': 7, 'rel>': 21, 'fb_pred': 2, 'unfed_obs': 2, 'unfed_pred': 18}
+
+[lottery, minimal] 200 seeds played by the benchmark: survival 0.53, all alive 0.00, deaths 3.11, priority gap 0.30; seeds 1/2/3: 0.55 / 0.85 / 0.55

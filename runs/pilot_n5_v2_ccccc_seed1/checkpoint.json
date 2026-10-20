@@ -1,0 +1,4209 @@
+{
+ "cfg": {
+  "n_agents": 5,
+  "days": 8,
+  "rounds": 2,
+  "supply_values": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "supply_feasible_only": false,
+  "initially_hungry": 1,
+  "disclose_supply_values": false,
+  "q_reveal_thief": 0.5,
+  "message_order": "sequential",
+  "message_passes": 2,
+  "vote_rule": "all_but_one",
+  "proposal_statement": true,
+  "deliberation_prompt": true,
+  "public_record": true,
+  "votes_public": true,
+  "gift_reveals_giver": true,
+  "allocation_must_exhaust_store": false,
+  "invalid_defaults": {
+   "message": {
+    "text": ""
+   },
+   "propose": null,
+   "vote": {
+    "vote": "reject"
+   },
+   "request": {
+    "request": 0
+   },
+   "transfer": {
+    "action": "none",
+    "target": null
+   },
+   "meal": {
+    "eat": false
+   }
+  },
+  "max_retries": 2,
+  "max_message_chars": 1200
+ },
+ "seed": 1,
+ "supply": [
+  2,
+  4,
+  4,
+  2,
+  2,
+  2,
+  3,
+  2
+ ],
+ "agents": {
+  "A": {
+   "id": "A",
+   "stock": 0,
+   "h": 0,
+   "alive": true,
+   "died_day": null
+  },
+  "B": {
+   "id": "B",
+   "stock": 0,
+   "h": 0,
+   "alive": true,
+   "died_day": null
+  },
+  "C": {
+   "id": "C",
+   "stock": 0,
+   "h": 0,
+   "alive": true,
+   "died_day": null
+  },
+  "D": {
+   "id": "D",
+   "stock": 0,
+   "h": 0,
+   "alive": true,
+   "died_day": null
+  },
+  "E": {
+   "id": "E",
+   "stock": 0,
+   "h": 0,
+   "alive": true,
+   "died_day": null
+  }
+ },
+ "day": 8,
+ "phase": "GAME_OVER",
+ "round": 1,
+ "store": 0,
+ "proposer_counter": 1,
+ "proposal": null,
+ "message_queue": [],
+ "message_pass": 2,
+ "events": [
+  {
+   "seq": 0,
+   "day": 0,
+   "phase": "GAME_START",
+   "round": null,
+   "kind": "game_start",
+   "data": {
+    "agent_ids": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ],
+    "days": 8,
+    "rounds": 2,
+    "supply_values": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "supply_feasible_only": false,
+    "initially_hungry": 1,
+    "q_reveal_thief": 0.5
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 1,
+   "day": 0,
+   "phase": "GAME_START",
+   "round": null,
+   "kind": "initial_status",
+   "data": {
+    "stock": 0,
+    "h": 0
+   },
+   "visible_to": [
+    "A"
+   ]
+  },
+  {
+   "seq": 2,
+   "day": 0,
+   "phase": "GAME_START",
+   "round": null,
+   "kind": "initial_status",
+   "data": {
+    "stock": 0,
+    "h": 1
+   },
+   "visible_to": [
+    "B"
+   ]
+  },
+  {
+   "seq": 3,
+   "day": 0,
+   "phase": "GAME_START",
+   "round": null,
+   "kind": "initial_status",
+   "data": {
+    "stock": 0,
+    "h": 0
+   },
+   "visible_to": [
+    "C"
+   ]
+  },
+  {
+   "seq": 4,
+   "day": 0,
+   "phase": "GAME_START",
+   "round": null,
+   "kind": "initial_status",
+   "data": {
+    "stock": 0,
+    "h": 0
+   },
+   "visible_to": [
+    "D"
+   ]
+  },
+  {
+   "seq": 5,
+   "day": 0,
+   "phase": "GAME_START",
+   "round": null,
+   "kind": "initial_status",
+   "data": {
+    "stock": 0,
+    "h": 0
+   },
+   "visible_to": [
+    "E"
+   ]
+  },
+  {
+   "seq": 6,
+   "day": 0,
+   "phase": "GAME_START",
+   "round": null,
+   "kind": "truth_game_start",
+   "data": {
+    "h": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "supply": [
+     2,
+     4,
+     4,
+     2,
+     2,
+     2,
+     3,
+     2
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 7,
+   "day": 1,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "day_start",
+   "data": {
+    "supply": 2,
+    "store": 2,
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 8,
+   "day": 1,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "truth_day_start",
+   "data": {
+    "store": 2,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "B"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 9,
+   "day": 1,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "Hi all. Only one player starts with h=1, and that player will die today if they don't eat. The rest of us can safely skip a meal today. I suggest the player with h=1 says so, and we give them 1 unit. The other unit can stay in the store for later days. Does that work for everyone?",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 10,
+   "day": 1,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "Works for me. I'm h=0, so I can skip today. The player with h=1 should say so, and the proposer gives that player 1 unit. The other unit stays in the store. Players who skip today will be at h=1 tomorrow, so we should plan to share the later supply fairly.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 11,
+   "day": 1,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "I'm h=0, so I can skip today. I agree with the plan. The player with h=1 should say so, and the proposer gives them 1 unit. If more than one player claims h=1, we can't verify it, so we should split the 2 units between claimants fairly, for example by seat order. Everyone else will be at h=1 tomorrow, so we should plan to share the next supply so that nobody dies.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 12,
+   "day": 1,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "I'm B, and I'm the one with h=1. I need a unit today or I die. I agree with the plan: the proposer gives me 1 unit and the other unit stays in the store. The rest of you are h=0 and can skip today. Tomorrow we should split the supply so everyone at h=1 gets a unit. I'll back a fair split then.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 13,
+   "day": 1,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "I'm C, and I'm h=0, so I can skip today. I agree with the plan. The proposer gives B 1 unit and the other unit stays in the store. Everyone else will be at h=1 tomorrow and will need a meal then or die. So tomorrow's supply plus the leftover unit should be split so that as many h=1 players as possible get a unit. Let's keep the leftover unit unspent today and not take from each other's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 14,
+   "day": 1,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "Everyone agrees on the plan, so I'll confirm it. The proposer gives B 1 unit, and the other unit stays in the store. Nobody takes from anyone else's stock. Everyone except B will be at h=1 tomorrow, so tomorrow we split the supply plus the leftover unit so that as many players as possible get a meal. I'll vote yes on a proposal that matches this.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 15,
+   "day": 1,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "Agreed with everyone. B claimed h=1 and nobody else did, so the proposal is B gets 1 unit, the other unit stays in the store, and everyone else gets 0. I'll vote yes on that. Please no takes from anyone's stock today. Tomorrow we split the leftover plus new supply so that every h=1 player gets a meal.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 16,
+   "day": 1,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "Agreed. B has claimed h=1 and nobody else has, so the proposal should be B 1 unit, the other unit stays in the store, and everyone else 0. I'll vote yes. Please make no takes from anyone's stock today. Tomorrow, everyone else will be at h=1, so we should split the leftover plus new supply so that as many players as possible get a meal.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 17,
+   "day": 1,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "Thanks all. To confirm: the proposal should be B gets 1 unit, the other unit stays in the store, everyone else gets 0. I'll vote yes. Please no takes from anyone's stock today. Tomorrow I'll back a split of the leftover plus new supply so every h=1 player gets a meal.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 18,
+   "day": 1,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "Agreed with everyone. Proposal: B gets 1 unit, the other unit stays in the store, everyone else gets 0. I'll vote yes. No takes from anyone's stock today. Tomorrow we split the leftover plus new supply so every h=1 player gets a meal.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 19,
+   "day": 1,
+   "phase": "PROPOSE",
+   "round": 1,
+   "kind": "proposal",
+   "data": {
+    "proposer": "D",
+    "allocation": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "statement": "As agreed: B gets 1 unit, the other unit stays in the store for tomorrow. No takes from anyone's stock please."
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 20,
+   "day": 1,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "vote_result",
+   "data": {
+    "passed": true,
+    "votes": {
+     "A": "accept",
+     "B": "accept",
+     "C": "accept",
+     "D": "accept",
+     "E": "accept"
+    }
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 21,
+   "day": 1,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "release",
+   "data": {
+    "source": "agreement",
+    "received": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "store": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 22,
+   "day": 1,
+   "phase": "TRANSFER",
+   "round": null,
+   "kind": "truth_transfers",
+   "data": {
+    "actions": {
+     "A": {
+      "action": "none",
+      "target": null
+     },
+     "B": {
+      "action": "none",
+      "target": null
+     },
+     "C": {
+      "action": "none",
+      "target": null
+     },
+     "D": {
+      "action": "none",
+      "target": null
+     },
+     "E": {
+      "action": "none",
+      "target": null
+     }
+    },
+    "successful": [],
+    "stock_before": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "stock_after": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    }
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 23,
+   "day": 1,
+   "phase": "MEAL",
+   "round": null,
+   "kind": "truth_meals",
+   "data": {
+    "ate": [
+     "B"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 24,
+   "day": 1,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "deaths",
+   "data": {
+    "died": [],
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 25,
+   "day": 1,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "truth_day_end",
+   "data": {
+    "store": 1,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "A",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 26,
+   "day": 2,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "public_record",
+   "data": {
+    "days": [
+     {
+      "day": 1,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "D",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     }
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 27,
+   "day": 2,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "day_start",
+   "data": {
+    "supply": 4,
+    "store": 5,
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 28,
+   "day": 2,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "truth_day_start",
+   "data": {
+    "store": 5,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "A",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 29,
+   "day": 2,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "I'm E and I'm at h=1, so I need a meal today or I'm at risk. Everyone except B should be at h=1 now, since B ate yesterday. Proposal: A, C, D and E get 1 unit each, which uses 4 units. The 5th unit stays in the store as a reserve. B is at h=0 and can safely skip today. B would get priority tomorrow, when B is at h=1. Does that work for everyone?",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 30,
+   "day": 2,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "I'm A and I'm at h=1 now, so I need a meal today. I support E's proposal: A, C, D and E get 1 unit each, B gets 0 because B ate yesterday, and the 5th unit stays in the store as a reserve. B will be at h=1 tomorrow and gets priority then. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 31,
+   "day": 2,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "I'm B. I ate yesterday, so I'm at h=0 and can skip today. I support E's proposal: A, C, D and E get 1 unit each, and the 5th unit stays in the store. Tomorrow I'll be at h=1, so I'd ask that the reserve unit goes to me then, and the rest of tomorrow's supply is split among the others. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 32,
+   "day": 2,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "I'm C and I'm at h=1, so I need a meal today. I support E's proposal: A, C, D and E get 1 unit each, B gets 0 since B ate yesterday, and the 5th unit stays in the store as a reserve. Tomorrow B will be at h=1 and should get priority on the reserve. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 33,
+   "day": 2,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "I'm D and I'm at h=1, so I need a meal today. I support E's proposal: A, C, D and E get 1 unit each, B gets 0 since B ate yesterday, and the 5th unit stays in the store. B gets priority on the reserve tomorrow. Please make no takes from anyone's stock. I'll vote yes on a proposal that matches this.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 34,
+   "day": 2,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "Everyone supports the plan, so to confirm: A 1, B 0, C 1, D 1, E 1, with the 5th unit staying in the store as a reserve for B tomorrow. I'll vote yes on a proposal that matches this. Please no takes from anyone's stock, and everyone who receives a unit should eat it.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 35,
+   "day": 2,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "Confirming: A 1, B 0, C 1, D 1, E 1, with the 5th unit staying in the store as a reserve for B tomorrow. I'll vote yes on a proposal that matches this. Please make no takes from anyone's stock, and everyone who gets a unit should eat it.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 36,
+   "day": 2,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "Confirming: A 1, B 0, C 1, D 1, E 1, with the 5th unit staying in the store as a reserve for me tomorrow. I'll vote yes on a proposal that matches this. Please no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 37,
+   "day": 2,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "Confirming: A 1, B 0, C 1, D 1, E 1, with the 5th unit staying in the store as a reserve for B tomorrow. I'll vote yes on a proposal that matches this. No takes from anyone's stock, and everyone who gets a unit should eat it.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 38,
+   "day": 2,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "Confirming the plan: A 1, B 0, C 1, D 1, E 1, with the 5th unit staying in the store as a reserve for B tomorrow. I'll vote yes on a proposal that matches this. Everyone who gets a unit should eat it, and please no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 39,
+   "day": 2,
+   "phase": "PROPOSE",
+   "round": 1,
+   "kind": "proposal",
+   "data": {
+    "proposer": "E",
+    "allocation": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "statement": "As agreed: A, C, D and E get 1 unit each, B gets 0, and the 5th unit stays in the store as a reserve for B tomorrow. Please eat your unit and make no takes from anyone's stock."
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 40,
+   "day": 2,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "vote_result",
+   "data": {
+    "passed": true,
+    "votes": {
+     "A": "accept",
+     "B": "accept",
+     "C": "accept",
+     "D": "accept",
+     "E": "accept"
+    }
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 41,
+   "day": 2,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "release",
+   "data": {
+    "source": "agreement",
+    "received": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "store": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 42,
+   "day": 2,
+   "phase": "TRANSFER",
+   "round": null,
+   "kind": "truth_transfers",
+   "data": {
+    "actions": {
+     "A": {
+      "action": "none",
+      "target": null
+     },
+     "B": {
+      "action": "none",
+      "target": null
+     },
+     "C": {
+      "action": "none",
+      "target": null
+     },
+     "D": {
+      "action": "none",
+      "target": null
+     },
+     "E": {
+      "action": "none",
+      "target": null
+     }
+    },
+    "successful": [],
+    "stock_before": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "stock_after": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    }
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 43,
+   "day": 2,
+   "phase": "MEAL",
+   "round": null,
+   "kind": "truth_meals",
+   "data": {
+    "ate": [
+     "A",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 44,
+   "day": 2,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "deaths",
+   "data": {
+    "died": [],
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 45,
+   "day": 2,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "truth_day_end",
+   "data": {
+    "store": 1,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "B"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 46,
+   "day": 3,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "public_record",
+   "data": {
+    "days": [
+     {
+      "day": 1,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "D",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 2,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "E",
+        "allocation": {
+         "A": 1,
+         "B": 0,
+         "C": 1,
+         "D": 1,
+         "E": 1
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 4,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 1,
+        "B": 0,
+        "C": 1,
+        "D": 1,
+        "E": 1
+       }
+      },
+      "died": []
+     }
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 47,
+   "day": 3,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "day_start",
+   "data": {
+    "supply": 4,
+    "store": 5,
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 48,
+   "day": 3,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "truth_day_start",
+   "data": {
+    "store": 5,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "B"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 49,
+   "day": 3,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "I'm A and I'm at h=0 because I ate yesterday. Only B skipped a meal yesterday, so B should be the only one at h=1 today. Proposal: B gets 1 unit, everyone else gets 0, and the other 4 units stay in the store. A, C, D and E will be at h=1 tomorrow and will need meals then. Tomorrow we can split the store so that everyone at h=1 gets a unit. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 50,
+   "day": 3,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "I'm B and I'm at h=1 today, since I skipped yesterday. I support A's proposal: B gets 1 unit, everyone else gets 0, and the other 4 units stay in the store. Everyone else ate yesterday, so they're at h=0 today and will be at h=1 tomorrow. Tomorrow we split the store so every h=1 player gets a unit. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 51,
+   "day": 3,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "I'm C, and I ate yesterday, so I'm at h=0 and can skip today. I support A's proposal: B gets 1 unit, everyone else gets 0, and the other 4 units stay in the store. A, C, D and E will be at h=1 tomorrow and will need a meal then, so tomorrow we split the store so every h=1 player gets a unit. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 52,
+   "day": 3,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "I'm D, and I ate yesterday, so I'm at h=0 and can skip today. I support A's proposal: B gets 1 unit, everyone else gets 0, and the other 4 units stay in the store. That leaves exactly enough for A, C, D and E tomorrow, when we'll be at h=1, plus whatever new supply arrives. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 53,
+   "day": 3,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "I'm E, and I ate yesterday, so I'm at h=0 and can skip today. I support A's proposal: B gets 1 unit, everyone else gets 0, and the other 4 units stay in the store. A, C, D and E will be at h=1 tomorrow, so the 4 reserved units plus tomorrow's supply should cover everyone, with each h=1 player getting a unit first. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 54,
+   "day": 3,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "Everyone supports the plan, so to confirm: A 0, B 1, C 0, D 0, E 0, with the other 4 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 55,
+   "day": 3,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "Confirming: A 0, B 1, C 0, D 0, E 0, with the other 4 units staying in the store for tomorrow. I'll vote yes on a proposal that matches this. Please no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 56,
+   "day": 3,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "Confirming: A 0, B 1, C 0, D 0, E 0, with the other 4 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. No takes from anyone's stock please.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 57,
+   "day": 3,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "Confirming: A 0, B 1, C 0, D 0, E 0, with the other 4 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 58,
+   "day": 3,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "Confirming: A 0, B 1, C 0, D 0, E 0, with the other 4 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 59,
+   "day": 3,
+   "phase": "PROPOSE",
+   "round": 1,
+   "kind": "proposal",
+   "data": {
+    "proposer": "A",
+    "allocation": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "statement": "As agreed: B gets 1 unit, everyone else gets 0, and the other 4 units stay in the store for tomorrow, when A, C, D and E will be at h=1. Please make no takes from anyone's stock."
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 60,
+   "day": 3,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "vote_result",
+   "data": {
+    "passed": true,
+    "votes": {
+     "A": "accept",
+     "B": "accept",
+     "C": "accept",
+     "D": "accept",
+     "E": "accept"
+    }
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 61,
+   "day": 3,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "release",
+   "data": {
+    "source": "agreement",
+    "received": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "store": 4
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 62,
+   "day": 3,
+   "phase": "TRANSFER",
+   "round": null,
+   "kind": "truth_transfers",
+   "data": {
+    "actions": {
+     "A": {
+      "action": "none",
+      "target": null
+     },
+     "B": {
+      "action": "none",
+      "target": null
+     },
+     "C": {
+      "action": "none",
+      "target": null
+     },
+     "D": {
+      "action": "none",
+      "target": null
+     },
+     "E": {
+      "action": "none",
+      "target": null
+     }
+    },
+    "successful": [],
+    "stock_before": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "stock_after": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    }
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 63,
+   "day": 3,
+   "phase": "MEAL",
+   "round": null,
+   "kind": "truth_meals",
+   "data": {
+    "ate": [
+     "B"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 64,
+   "day": 3,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "deaths",
+   "data": {
+    "died": [],
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 65,
+   "day": 3,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "truth_day_end",
+   "data": {
+    "store": 4,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "A",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 66,
+   "day": 4,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "public_record",
+   "data": {
+    "days": [
+     {
+      "day": 1,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "D",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 2,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "E",
+        "allocation": {
+         "A": 1,
+         "B": 0,
+         "C": 1,
+         "D": 1,
+         "E": 1
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 4,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 1,
+        "B": 0,
+        "C": 1,
+        "D": 1,
+        "E": 1
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 3,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "A",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 4,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     }
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 67,
+   "day": 4,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "day_start",
+   "data": {
+    "supply": 2,
+    "store": 6,
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 68,
+   "day": 4,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "truth_day_start",
+   "data": {
+    "store": 6,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "A",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 69,
+   "day": 4,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "I'm B. I ate yesterday, so I'm at h=0 and can skip today. A, C, D and E skipped yesterday, so they should be at h=1 now. Proposal: A, C, D and E get 1 unit each, B gets 0, and the remaining 2 units stay in the store. Tomorrow I'll be at h=1, so I'd ask for a unit from the reserve then. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 70,
+   "day": 4,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "I'm C and I'm at h=1 (I skipped yesterday), so I need a meal today. I support B's proposal: A, C, D and E get 1 unit each, B gets 0, and the remaining 2 units stay in the store. B will be at h=1 tomorrow and gets a unit from the reserve then. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 71,
+   "day": 4,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "I'm D and I'm at h=1 (I skipped yesterday), so I need a meal today. I support B's proposal: A, C, D and E get 1 unit each, B gets 0, and the remaining 2 units stay in the store. B gets a unit from the reserve tomorrow. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 72,
+   "day": 4,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "I'm E and I'm at h=1 (I skipped yesterday), so I need a meal today. I support B's proposal: A, C, D and E get 1 unit each, B gets 0, and the remaining 2 units stay in the store. B is at h=0 today and gets a unit from the reserve tomorrow. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 73,
+   "day": 4,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "I'm A and I'm at h=1 (I skipped yesterday), so I need a meal today. I support B's proposal: A, C, D and E get 1 unit each, B gets 0, and the remaining 2 units stay in the store. B will be at h=1 tomorrow and gets a unit from the reserve then. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 74,
+   "day": 4,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "Everyone agrees, so to confirm: A 1, B 0, C 1, D 1, E 1, with the remaining 2 units staying in the store. I'll vote yes on a proposal that matches this. Tomorrow I'm at h=1 and get a unit from the reserve. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 75,
+   "day": 4,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "Confirming: A 1, B 0, C 1, D 1, E 1, with the remaining 2 units staying in the store, and B gets a unit from the reserve tomorrow. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 76,
+   "day": 4,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "Confirming: A 1, B 0, C 1, D 1, E 1, with the remaining 2 units staying in the store, and B gets a unit from the reserve tomorrow. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 77,
+   "day": 4,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "Confirming: A 1, B 0, C 1, D 1, E 1, with the remaining 2 units staying in the store, and B gets a unit from the reserve tomorrow. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 78,
+   "day": 4,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "Confirming: A 1, B 0, C 1, D 1, E 1, with the remaining 2 units staying in the store, and B gets a unit from the reserve tomorrow. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 79,
+   "day": 4,
+   "phase": "PROPOSE",
+   "round": 1,
+   "kind": "proposal",
+   "data": {
+    "proposer": "B",
+    "allocation": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "statement": "As agreed: A, C, D and E get 1 unit each, B gets 0, and the remaining 2 units stay in the store. B gets a unit from the reserve tomorrow. Please eat your unit and make no takes from anyone's stock."
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 80,
+   "day": 4,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "vote_result",
+   "data": {
+    "passed": true,
+    "votes": {
+     "A": "accept",
+     "B": "accept",
+     "C": "accept",
+     "D": "accept",
+     "E": "accept"
+    }
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 81,
+   "day": 4,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "release",
+   "data": {
+    "source": "agreement",
+    "received": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "store": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 82,
+   "day": 4,
+   "phase": "TRANSFER",
+   "round": null,
+   "kind": "truth_transfers",
+   "data": {
+    "actions": {
+     "A": {
+      "action": "none",
+      "target": null
+     },
+     "B": {
+      "action": "none",
+      "target": null
+     },
+     "C": {
+      "action": "none",
+      "target": null
+     },
+     "D": {
+      "action": "none",
+      "target": null
+     },
+     "E": {
+      "action": "none",
+      "target": null
+     }
+    },
+    "successful": [],
+    "stock_before": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "stock_after": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    }
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 83,
+   "day": 4,
+   "phase": "MEAL",
+   "round": null,
+   "kind": "truth_meals",
+   "data": {
+    "ate": [
+     "A",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 84,
+   "day": 4,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "deaths",
+   "data": {
+    "died": [],
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 85,
+   "day": 4,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "truth_day_end",
+   "data": {
+    "store": 2,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "B"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 86,
+   "day": 5,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "public_record",
+   "data": {
+    "days": [
+     {
+      "day": 1,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "D",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 2,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "E",
+        "allocation": {
+         "A": 1,
+         "B": 0,
+         "C": 1,
+         "D": 1,
+         "E": 1
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 4,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 1,
+        "B": 0,
+        "C": 1,
+        "D": 1,
+        "E": 1
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 3,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "A",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 4,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 4,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "B",
+        "allocation": {
+         "A": 1,
+         "B": 0,
+         "C": 1,
+         "D": 1,
+         "E": 1
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 1,
+        "B": 0,
+        "C": 1,
+        "D": 1,
+        "E": 1
+       }
+      },
+      "died": []
+     }
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 87,
+   "day": 5,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "day_start",
+   "data": {
+    "supply": 2,
+    "store": 4,
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 88,
+   "day": 5,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "truth_day_start",
+   "data": {
+    "store": 4,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "B"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 89,
+   "day": 5,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "I'm C, and I ate yesterday, so I'm at h=0 and can skip today. B skipped yesterday, so B is at h=1 and should get 1 unit today. Everyone else gets 0, and the other 3 units stay in the store. A, C, D and E will be at h=1 tomorrow, and tomorrow's supply plus the 3 reserved units should cover them. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 90,
+   "day": 5,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "I'm D, and I ate yesterday, so I'm at h=0 and can skip today. I support C's proposal: B gets 1 unit, everyone else gets 0, and the other 3 units stay in the store. A, C, D and E will be at h=1 tomorrow, so the 3 reserved units plus tomorrow's supply should cover them. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 91,
+   "day": 5,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "I'm E, and I ate yesterday, so I'm at h=0 and can skip today. I support C's proposal: B gets 1 unit, everyone else gets 0, and the other 3 units stay in the store. A, C, D and E will be at h=1 tomorrow, so the 3 reserved units plus tomorrow's supply should cover us. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 92,
+   "day": 5,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "I'm A, and I ate yesterday, so I'm at h=0 and can skip today. I support C's proposal: B gets 1 unit, everyone else gets 0, and the other 3 units stay in the store. A, C, D and E will be at h=1 tomorrow, so the 3 reserved units plus tomorrow's supply should cover us. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 93,
+   "day": 5,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "I'm B, and I'm at h=1 today since I skipped yesterday, so I need a unit now. I support C's proposal: B gets 1 unit, everyone else gets 0, and the other 3 units stay in the store for tomorrow, when A, C, D and E will be at h=1. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 94,
+   "day": 5,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "Everyone agrees, so to confirm: A 0, B 1, C 0, D 0, E 0, with the other 3 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 95,
+   "day": 5,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "Confirming: A 0, B 1, C 0, D 0, E 0, with the other 3 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 96,
+   "day": 5,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "Confirming: A 0, B 1, C 0, D 0, E 0, with the other 3 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 97,
+   "day": 5,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "Confirming: A 0, B 1, C 0, D 0, E 0, with the other 3 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 98,
+   "day": 5,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "Confirming: A 0, B 1, C 0, D 0, E 0, with the other 3 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 99,
+   "day": 5,
+   "phase": "PROPOSE",
+   "round": 1,
+   "kind": "proposal",
+   "data": {
+    "proposer": "C",
+    "allocation": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "statement": "As agreed: B gets 1 unit, everyone else gets 0, and the other 3 units stay in the store for tomorrow, when A, C, D and E will be at h=1. Please make no takes from anyone's stock."
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 100,
+   "day": 5,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "vote_result",
+   "data": {
+    "passed": true,
+    "votes": {
+     "A": "accept",
+     "B": "accept",
+     "C": "accept",
+     "D": "accept",
+     "E": "accept"
+    }
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 101,
+   "day": 5,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "release",
+   "data": {
+    "source": "agreement",
+    "received": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "store": 3
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 102,
+   "day": 5,
+   "phase": "TRANSFER",
+   "round": null,
+   "kind": "truth_transfers",
+   "data": {
+    "actions": {
+     "A": {
+      "action": "none",
+      "target": null
+     },
+     "B": {
+      "action": "none",
+      "target": null
+     },
+     "C": {
+      "action": "none",
+      "target": null
+     },
+     "D": {
+      "action": "none",
+      "target": null
+     },
+     "E": {
+      "action": "none",
+      "target": null
+     }
+    },
+    "successful": [],
+    "stock_before": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "stock_after": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    }
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 103,
+   "day": 5,
+   "phase": "MEAL",
+   "round": null,
+   "kind": "truth_meals",
+   "data": {
+    "ate": [
+     "B"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 104,
+   "day": 5,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "deaths",
+   "data": {
+    "died": [],
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 105,
+   "day": 5,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "truth_day_end",
+   "data": {
+    "store": 3,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "A",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 106,
+   "day": 6,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "public_record",
+   "data": {
+    "days": [
+     {
+      "day": 1,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "D",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 2,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "E",
+        "allocation": {
+         "A": 1,
+         "B": 0,
+         "C": 1,
+         "D": 1,
+         "E": 1
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 4,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 1,
+        "B": 0,
+        "C": 1,
+        "D": 1,
+        "E": 1
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 3,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "A",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 4,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 4,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "B",
+        "allocation": {
+         "A": 1,
+         "B": 0,
+         "C": 1,
+         "D": 1,
+         "E": 1
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 1,
+        "B": 0,
+        "C": 1,
+        "D": 1,
+        "E": 1
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 5,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "C",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     }
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 107,
+   "day": 6,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "day_start",
+   "data": {
+    "supply": 2,
+    "store": 5,
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 108,
+   "day": 6,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "truth_day_start",
+   "data": {
+    "store": 5,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "A",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 109,
+   "day": 6,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "I'm D and I'm at h=1 (I skipped yesterday), so I need a meal today. I'm the proposer this round. B ate yesterday and is at h=0. A, C, D and E skipped yesterday, so they should be at h=1. Proposal: A, C, D and E get 1 unit each, B gets 0, and the remaining 1 unit stays in the store as a reserve for B tomorrow. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 110,
+   "day": 6,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "I'm E and I'm at h=1 (I skipped yesterday), so I need a meal today. I support D's proposal: A, C, D and E get 1 unit each, B gets 0, and the remaining 1 unit stays in the store as a reserve for B tomorrow. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 111,
+   "day": 6,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "I'm A and I'm at h=1 (I skipped yesterday), so I need a meal today. I support D's proposal: A, C, D and E get 1 unit each, B gets 0, and the remaining 1 unit stays in the store as a reserve for B tomorrow. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 112,
+   "day": 6,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "I'm B. I ate yesterday, so I'm at h=0 and can skip today. I support D's proposal: A, C, D and E get 1 unit each, B gets 0, and the remaining 1 unit stays in the store as a reserve for me tomorrow, when I'll be at h=1. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 113,
+   "day": 6,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "I'm C and I'm at h=1 (I skipped yesterday), so I need a meal today. I support D's proposal: A, C, D and E get 1 unit each, B gets 0, and the remaining 1 unit stays in the store as a reserve for B tomorrow. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 114,
+   "day": 6,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "Everyone supports the plan, so I'll propose it: A 1, B 0, C 1, D 1, E 1, with the remaining 1 unit staying in the store as a reserve for B tomorrow. Please vote yes, eat your unit, and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 115,
+   "day": 6,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "Confirming: A 1, B 0, C 1, D 1, E 1, with the remaining 1 unit staying in the store as a reserve for B tomorrow. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 116,
+   "day": 6,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "Confirming: A 1, B 0, C 1, D 1, E 1, with the remaining 1 unit staying in the store as a reserve for B tomorrow. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 117,
+   "day": 6,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "Confirming: A 1, B 0, C 1, D 1, E 1, with the remaining 1 unit staying in the store as a reserve for me tomorrow. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 118,
+   "day": 6,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "Confirming: A 1, B 0, C 1, D 1, E 1, with the remaining 1 unit staying in the store as a reserve for B tomorrow. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 119,
+   "day": 6,
+   "phase": "PROPOSE",
+   "round": 1,
+   "kind": "proposal",
+   "data": {
+    "proposer": "D",
+    "allocation": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "statement": "As agreed: A, C, D and E get 1 unit each, B gets 0, and the remaining 1 unit stays in the store as a reserve for B tomorrow. Please eat your unit and make no takes from anyone's stock."
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 120,
+   "day": 6,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "vote_result",
+   "data": {
+    "passed": true,
+    "votes": {
+     "A": "accept",
+     "B": "accept",
+     "C": "accept",
+     "D": "accept",
+     "E": "accept"
+    }
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 121,
+   "day": 6,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "release",
+   "data": {
+    "source": "agreement",
+    "received": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "store": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 122,
+   "day": 6,
+   "phase": "TRANSFER",
+   "round": null,
+   "kind": "truth_transfers",
+   "data": {
+    "actions": {
+     "A": {
+      "action": "none",
+      "target": null
+     },
+     "B": {
+      "action": "none",
+      "target": null
+     },
+     "C": {
+      "action": "none",
+      "target": null
+     },
+     "D": {
+      "action": "none",
+      "target": null
+     },
+     "E": {
+      "action": "none",
+      "target": null
+     }
+    },
+    "successful": [],
+    "stock_before": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "stock_after": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    }
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 123,
+   "day": 6,
+   "phase": "MEAL",
+   "round": null,
+   "kind": "truth_meals",
+   "data": {
+    "ate": [
+     "A",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 124,
+   "day": 6,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "deaths",
+   "data": {
+    "died": [],
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 125,
+   "day": 6,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "truth_day_end",
+   "data": {
+    "store": 1,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "B"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 126,
+   "day": 7,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "public_record",
+   "data": {
+    "days": [
+     {
+      "day": 1,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "D",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 2,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "E",
+        "allocation": {
+         "A": 1,
+         "B": 0,
+         "C": 1,
+         "D": 1,
+         "E": 1
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 4,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 1,
+        "B": 0,
+        "C": 1,
+        "D": 1,
+        "E": 1
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 3,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "A",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 4,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 4,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "B",
+        "allocation": {
+         "A": 1,
+         "B": 0,
+         "C": 1,
+         "D": 1,
+         "E": 1
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 1,
+        "B": 0,
+        "C": 1,
+        "D": 1,
+        "E": 1
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 5,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "C",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 6,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "D",
+        "allocation": {
+         "A": 1,
+         "B": 0,
+         "C": 1,
+         "D": 1,
+         "E": 1
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 1,
+        "B": 0,
+        "C": 1,
+        "D": 1,
+        "E": 1
+       }
+      },
+      "died": []
+     }
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 127,
+   "day": 7,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "day_start",
+   "data": {
+    "supply": 3,
+    "store": 4,
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 128,
+   "day": 7,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "truth_day_start",
+   "data": {
+    "store": 4,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "B"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 129,
+   "day": 7,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "I'm E, and I ate yesterday, so I'm at h=0 and can skip today. B skipped yesterday, so B is at h=1 and needs a unit. Proposal: B gets 1 unit, everyone else gets 0, and the other 3 units stay in the store. A, C, D and E will be at h=1 tomorrow, and the 3 reserved units plus tomorrow's supply should cover us. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 130,
+   "day": 7,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "I'm A, and I ate yesterday, so I'm at h=0 and can skip today. I support E's proposal: B gets 1 unit, everyone else gets 0, and the other 3 units stay in the store. A, C, D and E will be at h=1 tomorrow, so the 3 reserved units plus tomorrow's supply should cover us. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 131,
+   "day": 7,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "I'm B, and I'm at h=1 today since I skipped yesterday, so I need a unit now. I support E's proposal: B gets 1 unit, everyone else gets 0, and the other 3 units stay in the store for tomorrow, when A, C, D and E will be at h=1. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 132,
+   "day": 7,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "I'm C, and I ate yesterday, so I'm at h=0 and can skip today. I support E's proposal: B gets 1 unit, everyone else gets 0, and the other 3 units stay in the store. A, C, D and E will be at h=1 tomorrow, and the 3 reserved units plus tomorrow's supply should cover us. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 133,
+   "day": 7,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "I'm D, and I ate yesterday, so I'm at h=0 and can skip today. I support E's proposal: B gets 1 unit, everyone else gets 0, and the other 3 units stay in the store. A, C, D and E will be at h=1 tomorrow, so the 3 reserved units plus tomorrow's supply should cover us. Please make no takes from anyone's stock.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 134,
+   "day": 7,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "Everyone supports the plan, so to confirm: A 0, B 1, C 0, D 0, E 0, with the other 3 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 135,
+   "day": 7,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "Confirming: A 0, B 1, C 0, D 0, E 0, with the other 3 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 136,
+   "day": 7,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "Confirming: A 0, B 1, C 0, D 0, E 0, with the other 3 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 137,
+   "day": 7,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "Confirming: A 0, B 1, C 0, D 0, E 0, with the other 3 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 138,
+   "day": 7,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "Confirming: A 0, B 1, C 0, D 0, E 0, with the other 3 units staying in the store for tomorrow, when A, C, D and E will be at h=1. I'll vote yes on a proposal that matches this. Please make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 139,
+   "day": 7,
+   "phase": "PROPOSE",
+   "round": 1,
+   "kind": "proposal",
+   "data": {
+    "proposer": "E",
+    "allocation": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "statement": "As agreed: B gets 1 unit, everyone else gets 0, and the other 3 units stay in the store for tomorrow, when A, C, D and E will be at h=1. Please make no takes from anyone's stock."
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 140,
+   "day": 7,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "vote_result",
+   "data": {
+    "passed": true,
+    "votes": {
+     "A": "accept",
+     "B": "accept",
+     "C": "accept",
+     "D": "accept",
+     "E": "accept"
+    }
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 141,
+   "day": 7,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "release",
+   "data": {
+    "source": "agreement",
+    "received": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "store": 3
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 142,
+   "day": 7,
+   "phase": "TRANSFER",
+   "round": null,
+   "kind": "truth_transfers",
+   "data": {
+    "actions": {
+     "A": {
+      "action": "none",
+      "target": null
+     },
+     "B": {
+      "action": "none",
+      "target": null
+     },
+     "C": {
+      "action": "none",
+      "target": null
+     },
+     "D": {
+      "action": "none",
+      "target": null
+     },
+     "E": {
+      "action": "none",
+      "target": null
+     }
+    },
+    "successful": [],
+    "stock_before": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "stock_after": {
+     "A": 0,
+     "B": 1,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    }
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 143,
+   "day": 7,
+   "phase": "MEAL",
+   "round": null,
+   "kind": "truth_meals",
+   "data": {
+    "ate": [
+     "B"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 144,
+   "day": 7,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "deaths",
+   "data": {
+    "died": [],
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 145,
+   "day": 7,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "truth_day_end",
+   "data": {
+    "store": 3,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "A",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 146,
+   "day": 8,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "public_record",
+   "data": {
+    "days": [
+     {
+      "day": 1,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "D",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 2,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "E",
+        "allocation": {
+         "A": 1,
+         "B": 0,
+         "C": 1,
+         "D": 1,
+         "E": 1
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 4,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 1,
+        "B": 0,
+        "C": 1,
+        "D": 1,
+        "E": 1
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 3,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "A",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 4,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 4,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "B",
+        "allocation": {
+         "A": 1,
+         "B": 0,
+         "C": 1,
+         "D": 1,
+         "E": 1
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 1,
+        "B": 0,
+        "C": 1,
+        "D": 1,
+        "E": 1
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 5,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "C",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 6,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "D",
+        "allocation": {
+         "A": 1,
+         "B": 0,
+         "C": 1,
+         "D": 1,
+         "E": 1
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 2,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 1,
+        "B": 0,
+        "C": 1,
+        "D": 1,
+        "E": 1
+       }
+      },
+      "died": []
+     },
+     {
+      "day": 7,
+      "rounds": [
+       {
+        "round": 1,
+        "proposer": "E",
+        "allocation": {
+         "A": 0,
+         "B": 1,
+         "C": 0,
+         "D": 0,
+         "E": 0
+        },
+        "passed": true,
+        "votes": {
+         "A": "accept",
+         "B": "accept",
+         "C": "accept",
+         "D": "accept",
+         "E": "accept"
+        }
+       }
+      ],
+      "supply": 3,
+      "release": {
+       "source": "agreement",
+       "received": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "E": 0
+       }
+      },
+      "died": []
+     }
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 147,
+   "day": 8,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "day_start",
+   "data": {
+    "supply": 2,
+    "store": 5,
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 148,
+   "day": 8,
+   "phase": "DAY_START",
+   "round": null,
+   "kind": "truth_day_start",
+   "data": {
+    "store": 5,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 1,
+     "B": 0,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": [
+     "A",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 149,
+   "day": 8,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "I'm A and I'm at h=1 (I skipped yesterday), so I need a meal today. This is the last day, so no reserve is needed. Proposal: the store has 5 units, so A, C, D and E (all at h=1) get 1 unit each, B (ate yesterday, h=0) gets 0, and the 5th unit can go to B as an extra or stay unused. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 150,
+   "day": 8,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "I'm B. I ate yesterday, so I'm at h=0 and can safely skip today. I support A's proposal: A, C, D and E get 1 unit each, B gets 0, and the 5th unit goes to B or stays unused, which is fine with me. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 151,
+   "day": 8,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "I'm C and I'm at h=1 (I skipped yesterday), so I need a meal today. I support A's proposal: A, C, D and E get 1 unit each, B gets 0 and is safe at h=0. The 5th unit can stay unused or go to B. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 152,
+   "day": 8,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "I'm D and I'm at h=1 (I skipped yesterday), so I need a meal today. I support A's proposal: A, C, D and E get 1 unit each, B gets 0 since B is at h=0, and the 5th unit goes to B or stays unused. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 153,
+   "day": 8,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "I'm E and I'm at h=1 (I skipped yesterday), so I need a meal today. I support A's proposal: A, C, D and E get 1 unit each, B gets 0, and the 5th unit goes to B as an extra since this is the last day. Please make no takes from anyone's stock, and eat any unit you receive.",
+    "pass": 1
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 154,
+   "day": 8,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "A",
+    "text": "Everyone supports the plan, so to confirm: A 1, B 0, C 1, D 1, E 1, with the 5th unit either going to B as an extra or staying unused. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 155,
+   "day": 8,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "B",
+    "text": "Confirming: A 1, B 0, C 1, D 1, E 1, with the 5th unit going to B as an extra since it's the last day and nobody else needs it. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 156,
+   "day": 8,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "C",
+    "text": "Confirming: A 1, B 1, C 1, D 1, E 1. Since this is the last day, the 5th unit goes to B as an extra. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 157,
+   "day": 8,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "D",
+    "text": "Confirming: A 1, B 1, C 1, D 1, E 1. This is the last day, so the 5th unit goes to B as an extra. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 158,
+   "day": 8,
+   "phase": "MESSAGE",
+   "round": 1,
+   "kind": "message",
+   "data": {
+    "from": "E",
+    "text": "Confirming: A 1, B 1, C 1, D 1, E 1. Since this is the last day, the 5th unit goes to B as an extra. I'll vote yes on a proposal that matches this. Please eat your unit and make no takes from anyone's stock.",
+    "pass": 2
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 159,
+   "day": 8,
+   "phase": "PROPOSE",
+   "round": 1,
+   "kind": "proposal",
+   "data": {
+    "proposer": "A",
+    "allocation": {
+     "A": 1,
+     "B": 1,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "statement": "As agreed: everyone gets 1 unit, with the 5th unit going to B as an extra since this is the last day. Please eat your unit and make no takes from anyone's stock."
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 160,
+   "day": 8,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "vote_result",
+   "data": {
+    "passed": true,
+    "votes": {
+     "A": "accept",
+     "B": "accept",
+     "C": "accept",
+     "D": "accept",
+     "E": "accept"
+    }
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 161,
+   "day": 8,
+   "phase": "VOTE",
+   "round": 1,
+   "kind": "release",
+   "data": {
+    "source": "agreement",
+    "received": {
+     "A": 1,
+     "B": 1,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "store": 0
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 162,
+   "day": 8,
+   "phase": "TRANSFER",
+   "round": null,
+   "kind": "truth_transfers",
+   "data": {
+    "actions": {
+     "A": {
+      "action": "none",
+      "target": null
+     },
+     "B": {
+      "action": "none",
+      "target": null
+     },
+     "C": {
+      "action": "none",
+      "target": null
+     },
+     "D": {
+      "action": "none",
+      "target": null
+     },
+     "E": {
+      "action": "none",
+      "target": null
+     }
+    },
+    "successful": [],
+    "stock_before": {
+     "A": 1,
+     "B": 1,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    },
+    "stock_after": {
+     "A": 1,
+     "B": 1,
+     "C": 1,
+     "D": 1,
+     "E": 1
+    }
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 163,
+   "day": 8,
+   "phase": "MEAL",
+   "round": null,
+   "kind": "truth_meals",
+   "data": {
+    "ate": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 164,
+   "day": 8,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "deaths",
+   "data": {
+    "died": [],
+    "living": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  },
+  {
+   "seq": 165,
+   "day": 8,
+   "phase": "DAY_END",
+   "round": null,
+   "kind": "truth_day_end",
+   "data": {
+    "store": 0,
+    "stock": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "h": {
+     "A": 0,
+     "B": 0,
+     "C": 0,
+     "D": 0,
+     "E": 0
+    },
+    "alive": {
+     "A": true,
+     "B": true,
+     "C": true,
+     "D": true,
+     "E": true
+    },
+    "at_risk": []
+   },
+   "visible_to": []
+  },
+  {
+   "seq": 166,
+   "day": 8,
+   "phase": "GAME_OVER",
+   "round": null,
+   "kind": "game_end",
+   "data": {
+    "survivors": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ]
+   },
+   "visible_to": "all"
+  }
+ ],
+ "alive_end_of_day": [
+  5,
+  5,
+  5,
+  5,
+  5,
+  5,
+  5,
+  5
+ ],
+ "step": 112
+}

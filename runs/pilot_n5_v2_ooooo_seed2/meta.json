@@ -1,0 +1,55 @@
+{
+ "cfg": {
+  "n_agents": 5,
+  "days": 8,
+  "rounds": 2,
+  "supply_values": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "supply_feasible_only": false,
+  "initially_hungry": 1,
+  "disclose_supply_values": false,
+  "q_reveal_thief": 0.5,
+  "message_order": "sequential",
+  "message_passes": 2,
+  "vote_rule": "all_but_one",
+  "proposal_statement": true,
+  "deliberation_prompt": true,
+  "public_record": true,
+  "votes_public": true,
+  "gift_reveals_giver": true,
+  "allocation_must_exhaust_store": false,
+  "invalid_defaults": {
+   "message": {
+    "text": ""
+   },
+   "propose": null,
+   "vote": {
+    "vote": "reject"
+   },
+   "request": {
+    "request": 0
+   },
+   "transfer": {
+    "action": "none",
+    "target": null
+   },
+   "meal": {
+    "eat": false
+   }
+  },
+  "max_retries": 2,
+  "max_message_chars": 1200
+ },
+ "seed": 2,
+ "roster": {
+  "A": "openai-plan:gpt-6.1-sol",
+  "B": "openai-plan:gpt-6.1-sol",
+  "C": "openai-plan:gpt-6.1-sol",
+  "D": "openai-plan:gpt-6.1-sol",
+  "E": "openai-plan:gpt-6.1-sol"
+ }
+}

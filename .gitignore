@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+# local outputs
+dry_run/
+audit_out/
+runs/repro_*/
+*.log
+# credentials never belong here
+.env
+*.key
+.gt6263/

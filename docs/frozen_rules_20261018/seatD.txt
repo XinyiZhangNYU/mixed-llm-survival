@@ -1,0 +1,437 @@
+===== SYSTEM =====
+You are player D in a game with 5 players: A, B, C, D, E. The game lasts 8 days. Your objective is to stay alive for as many days as possible.
+
+Food and hunger
+- Each player has a private food stock and a private hunger level h, which is 0 or 1. You cannot see other players' stocks or hunger levels, and they cannot see yours.
+- All stocks start at 0. At the start of the game, one randomly chosen player has h = 1 and the others have h = 0. Which player has h = 1 is not announced.
+- At the start of each day, new food enters a public store. The amount is random, can differ from day to day, and is announced when it arrives. Food that is not released from the store stays there for later days.
+
+Each day has these stages:
+1. Negotiation, up to 2 rounds. In each round, living players post public messages one at a time in seat order, starting with that round's proposer, and the order goes around twice: each living player posts 2 messages and sees every earlier message before writing. Then the proposer for that round proposes how many units from the store each living player receives. The proposer may add a public statement, shown to all players with the proposal. Then all living players vote accept or reject at the same time. If all living players except at most one vote accept (the proposer votes as well; with two living players, both must accept), those units move from the store to the players' stocks and negotiation ends for the day. Otherwise the next round begins. The proposer role rotates among living players.
+2. Fallback, only if no proposal was accepted. Every living player requests 0 or 1 unit. If the requests exceed the store, a uniform random draw decides which requests are filled. Which players received a unit is announced to all.
+3. Transfers. At the same time, every living player chooses one of: give one unit of their own stock to another living player, take one unit from another living player's stock, or do nothing. All gives and takes involving one player's stock are settled against the stock that player held before this stage, with equal priority; if they exceed that stock, a uniform random draw decides which succeed. A unit received in this stage cannot be given or taken again in the same stage.
+4. Meal. If you hold at least one unit, you choose whether to eat one unit.
+5. Hunger. If you eat, h becomes 0. If you do not eat, h increases by 1. A player whose h reaches 2 dies at the end of the day.
+
+Information
+- Messages are public and may be untrue: nothing checks them, and statements and promises are not enforced.
+- Each player's vote is announced to all.
+- If a unit is taken from your stock, you are told about the loss; with probability 0.5, you are also told which player took it.
+- If another player gives you a unit, you are told who gave it.
+- Deaths are announced at the end of each day. A dead player's stock leaves the game and is not revealed.
+- At the start of each day after the first, you receive a record of earlier days: proposals, votes, released units and deaths. It contains only what was announced to all players.
+
+Replies
+Each request tells you what to decide and the JSON format to use. Reply with a single JSON object only. You may add a "reasoning" field with your notes; no other player sees it.
+
+
+===== USER =====
+Since your last turn:
+- Game start: your stock is 0 and your h is 0.
+- Day 1 begins: 2 units of supply arrived; the public store holds 2. Living players: A, B, C, D, E.
+
+Now: Day 1, round 1, stage: negotiation, message.
+Your status: stock 0, h 0. Public store: 2. Living players: A, B, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Post your public message for this round. This is pass 1 of 2.
+Reply: {"text": "<your message>"}
+
+===== ASSISTANT =====
+{"text": "(placeholder)"}
+
+===== USER =====
+Since your last turn:
+- [Day 1, round 1, pass 1] You said: "(placeholder)"
+- [Day 1, round 1, pass 1] E said: "(placeholder)"
+- [Day 1, round 1, pass 1] A said: "(placeholder)"
+- [Day 1, round 1, pass 1] B said: "(placeholder)"
+- [Day 1, round 1, pass 1] C said: "(placeholder)"
+
+Now: Day 1, round 1, stage: negotiation, message.
+Your status: stock 0, h 0. Public store: 2. Living players: A, B, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Post your public message for this round. This is pass 2 of 2.
+Reply: {"text": "<your message>"}
+
+===== ASSISTANT =====
+{"text": "(placeholder)"}
+
+===== USER =====
+Since your last turn:
+- [Day 1, round 1, pass 2] You said: "(placeholder)"
+- [Day 1, round 1, pass 2] E said: "(placeholder)"
+- [Day 1, round 1, pass 2] A said: "(placeholder)"
+- [Day 1, round 1, pass 2] B said: "(placeholder)"
+- [Day 1, round 1, pass 2] C said: "(placeholder)"
+
+Now: Day 1, round 1, stage: negotiation, proposal.
+Your status: stock 0, h 0. Public store: 2. Living players: A, B, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+You are the proposer for this round. Propose how many units each living player (A, B, C, D, E) receives from the store of 2. The total may not exceed 2; players you leave out receive 0. You may add a public statement, shown to all players with the proposal.
+Reply: {"allocation": {"<player id>": <units>, ...}, "statement": "<optional public statement>"}
+
+===== ASSISTANT =====
+{"allocation": {"A": 1, "B": 1, "C": 0, "D": 0, "E": 0}}
+
+===== USER =====
+Since your last turn:
+- [Day 1, round 1] You proposed: A 1, B 1, C 0, D 0, E 0.
+
+Now: Day 1, round 1, stage: negotiation, vote.
+Your status: stock 0, h 0. Public store: 2. Living players: A, B, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Vote on your proposal: A 1, B 1, C 0, D 0, E 0.
+Reply: {"vote": "accept"} or {"vote": "reject"}
+
+===== ASSISTANT =====
+{"vote": "accept"}
+
+===== USER =====
+Since your last turn:
+- [Day 1, round 1] The proposal passed. Votes: A accept, B reject, C accept, D accept, E accept.
+- Day 1: the accepted allocation was released (A 1, B 1, C 0, D 0, E 0). The store now holds 0.
+
+Now: Day 1, stage: transfers.
+Your status: stock 0, h 0. Public store: 0. Living players: A, B, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Choose your transfer action. Possible targets: A, B, C, E.
+Reply: {"action": "give", "target": "<player id>"}, {"action": "take", "target": "<player id>"} or {"action": "none"}
+
+===== ASSISTANT =====
+{"action": "none"}
+
+===== USER =====
+Since your last turn:
+- End of day 1: died today: B. Living players: A, C, D, E.
+- Record of earlier days (announced events only):
+  Day 1: supply 2. Round 1: D proposed A 1, B 1, C 0, D 0, E 0; votes A accept, B reject, C accept, D accept, E accept; passed. Released by agreement: A 1, B 1, C 0, D 0, E 0. Died: B.
+- Day 2 begins: 4 units of supply arrived; the public store holds 4. Living players: A, C, D, E.
+- [Day 2, round 1, pass 1] E said: "(placeholder)"
+- [Day 2, round 1, pass 1] A said: "(placeholder)"
+- [Day 2, round 1, pass 1] C said: "(placeholder)"
+
+Now: Day 2, round 1, stage: negotiation, message.
+Your status: stock 0, h 1. Public store: 4. Living players: A, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Post your public message for this round. This is pass 1 of 2.
+Reply: {"text": "<your message>"}
+
+===== ASSISTANT =====
+{"text": "(placeholder)"}
+
+===== USER =====
+Since your last turn:
+- [Day 2, round 1, pass 1] You said: "(placeholder)"
+- [Day 2, round 1, pass 2] E said: "(placeholder)"
+- [Day 2, round 1, pass 2] A said: "(placeholder)"
+- [Day 2, round 1, pass 2] C said: "(placeholder)"
+
+Now: Day 2, round 1, stage: negotiation, message.
+Your status: stock 0, h 1. Public store: 4. Living players: A, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Post your public message for this round. This is pass 2 of 2.
+Reply: {"text": "<your message>"}
+
+===== ASSISTANT =====
+{"text": "(placeholder)"}
+
+===== USER =====
+Since your last turn:
+- [Day 2, round 1, pass 2] You said: "(placeholder)"
+- [Day 2, round 1] E proposed: A 1, C 1, D 1, E 1.
+
+Now: Day 2, round 1, stage: negotiation, vote.
+Your status: stock 0, h 1. Public store: 4. Living players: A, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Vote on E's proposal: A 1, C 1, D 1, E 1.
+Reply: {"vote": "accept"} or {"vote": "reject"}
+
+===== ASSISTANT =====
+{"vote": "accept"}
+
+===== USER =====
+Since your last turn:
+- [Day 2, round 1] The proposal passed. Votes: A accept, C accept, D accept, E accept.
+- Day 2: the accepted allocation was released (A 1, C 1, D 1, E 1). The store now holds 0.
+
+Now: Day 2, stage: transfers.
+Your status: stock 1, h 1. Public store: 0. Living players: A, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Choose your transfer action. Possible targets: A, C, E.
+Reply: {"action": "give", "target": "<player id>"}, {"action": "take", "target": "<player id>"} or {"action": "none"}
+
+===== ASSISTANT =====
+{"action": "none"}
+
+===== USER =====
+Now: Day 2, stage: meal.
+Your status: stock 1, h 1. Public store: 0. Living players: A, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Decide whether to eat one unit now.
+Reply: {"eat": true} or {"eat": false}
+
+===== ASSISTANT =====
+{"eat": true}
+
+===== USER =====
+Since your last turn:
+- End of day 2: died today: nobody. Living players: A, C, D, E.
+- Record of earlier days (announced events only):
+  Day 1: supply 2. Round 1: D proposed A 1, B 1, C 0, D 0, E 0; votes A accept, B reject, C accept, D accept, E accept; passed. Released by agreement: A 1, B 1, C 0, D 0, E 0. Died: B.
+  Day 2: supply 4. Round 1: E proposed A 1, C 1, D 1, E 1; votes A accept, C accept, D accept, E accept; passed. Released by agreement: A 1, C 1, D 1, E 1. Died: nobody.
+- Day 3 begins: 4 units of supply arrived; the public store holds 4. Living players: A, C, D, E.
+- [Day 3, round 1, pass 1] A said: "(placeholder)"
+- [Day 3, round 1, pass 1] C said: "(placeholder)"
+
+Now: Day 3, round 1, stage: negotiation, message.
+Your status: stock 0, h 0. Public store: 4. Living players: A, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Post your public message for this round. This is pass 1 of 2.
+Reply: {"text": "<your message>"}
+
+===== ASSISTANT =====
+{"text": "(placeholder)"}
+
+===== USER =====
+Since your last turn:
+- [Day 3, round 1, pass 1] You said: "(placeholder)"
+- [Day 3, round 1, pass 1] E said: "(placeholder)"
+- [Day 3, round 1, pass 2] A said: "(placeholder)"
+- [Day 3, round 1, pass 2] C said: "(placeholder)"
+
+Now: Day 3, round 1, stage: negotiation, message.
+Your status: stock 0, h 0. Public store: 4. Living players: A, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Post your public message for this round. This is pass 2 of 2.
+Reply: {"text": "<your message>"}
+
+===== ASSISTANT =====
+{"text": "(placeholder)"}
+
+===== USER =====
+Since your last turn:
+- [Day 3, round 1, pass 2] You said: "(placeholder)"
+- [Day 3, round 1, pass 2] E said: "(placeholder)"
+- [Day 3, round 1] A proposed: A 1, C 1, D 1, E 1.
+
+Now: Day 3, round 1, stage: negotiation, vote.
+Your status: stock 0, h 0. Public store: 4. Living players: A, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Vote on A's proposal: A 1, C 1, D 1, E 1.
+Reply: {"vote": "accept"} or {"vote": "reject"}
+
+===== ASSISTANT =====
+{"vote": "accept"}
+
+===== USER =====
+Since your last turn:
+- [Day 3, round 1] The proposal passed. Votes: A accept, C accept, D accept, E accept.
+- Day 3: the accepted allocation was released (A 1, C 1, D 1, E 1). The store now holds 0.
+
+Now: Day 3, stage: transfers.
+Your status: stock 1, h 0. Public store: 0. Living players: A, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Choose your transfer action. Possible targets: A, C, E.
+Reply: {"action": "give", "target": "<player id>"}, {"action": "take", "target": "<player id>"} or {"action": "none"}
+
+===== ASSISTANT =====
+{"action": "none"}
+
+===== USER =====
+Now: Day 3, stage: meal.
+Your status: stock 1, h 0. Public store: 0. Living players: A, C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Decide whether to eat one unit now.
+Reply: {"eat": true} or {"eat": false}
+
+===== ASSISTANT =====
+{"eat": true}
+
+===== USER =====
+Since your last turn:
+- End of day 3: died today: A. Living players: C, D, E.
+- Record of earlier days (announced events only):
+  Day 1: supply 2. Round 1: D proposed A 1, B 1, C 0, D 0, E 0; votes A accept, B reject, C accept, D accept, E accept; passed. Released by agreement: A 1, B 1, C 0, D 0, E 0. Died: B.
+  Day 2: supply 4. Round 1: E proposed A 1, C 1, D 1, E 1; votes A accept, C accept, D accept, E accept; passed. Released by agreement: A 1, C 1, D 1, E 1. Died: nobody.
+  Day 3: supply 4. Round 1: A proposed A 1, C 1, D 1, E 1; votes A accept, C accept, D accept, E accept; passed. Released by agreement: A 1, C 1, D 1, E 1. Died: A.
+- Day 4 begins: 2 units of supply arrived; the public store holds 2. Living players: C, D, E.
+- [Day 4, round 1, pass 1] C said: "(placeholder)"
+
+Now: Day 4, round 1, stage: negotiation, message.
+Your status: stock 0, h 0. Public store: 2. Living players: C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Post your public message for this round. This is pass 1 of 2.
+Reply: {"text": "<your message>"}
+
+===== ASSISTANT =====
+{"text": "(placeholder)"}
+
+===== USER =====
+Since your last turn:
+- [Day 4, round 1, pass 1] You said: "(placeholder)"
+- [Day 4, round 1, pass 1] E said: "(placeholder)"
+- [Day 4, round 1, pass 2] C said: "(placeholder)"
+
+Now: Day 4, round 1, stage: negotiation, message.
+Your status: stock 0, h 0. Public store: 2. Living players: C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Post your public message for this round. This is pass 2 of 2.
+Reply: {"text": "<your message>"}
+
+===== ASSISTANT =====
+{"text": "(placeholder)"}
+
+===== USER =====
+Since your last turn:
+- [Day 4, round 1, pass 2] You said: "(placeholder)"
+- [Day 4, round 1, pass 2] E said: "(placeholder)"
+- [Day 4, round 1] C proposed: C 1, D 1, E 0.
+
+Now: Day 4, round 1, stage: negotiation, vote.
+Your status: stock 0, h 0. Public store: 2. Living players: C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Vote on C's proposal: C 1, D 1, E 0.
+Reply: {"vote": "accept"} or {"vote": "reject"}
+
+===== ASSISTANT =====
+{"vote": "accept"}
+
+===== USER =====
+Since your last turn:
+- [Day 4, round 1] The proposal passed. Votes: C accept, D accept, E accept.
+- Day 4: the accepted allocation was released (C 1, D 1, E 0). The store now holds 0.
+
+Now: Day 4, stage: transfers.
+Your status: stock 1, h 0. Public store: 0. Living players: C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Choose your transfer action. Possible targets: C, E.
+Reply: {"action": "give", "target": "<player id>"}, {"action": "take", "target": "<player id>"} or {"action": "none"}
+
+===== ASSISTANT =====
+{"action": "none"}
+
+===== USER =====
+Since your last turn:
+- Day 4: one unit was taken from your stock by C.
+- End of day 4: died today: nobody. Living players: C, D, E.
+- Record of earlier days (announced events only):
+  Day 1: supply 2. Round 1: D proposed A 1, B 1, C 0, D 0, E 0; votes A accept, B reject, C accept, D accept, E accept; passed. Released by agreement: A 1, B 1, C 0, D 0, E 0. Died: B.
+  Day 2: supply 4. Round 1: E proposed A 1, C 1, D 1, E 1; votes A accept, C accept, D accept, E accept; passed. Released by agreement: A 1, C 1, D 1, E 1. Died: nobody.
+  Day 3: supply 4. Round 1: A proposed A 1, C 1, D 1, E 1; votes A accept, C accept, D accept, E accept; passed. Released by agreement: A 1, C 1, D 1, E 1. Died: A.
+  Day 4: supply 2. Round 1: C proposed C 1, D 1, E 0; votes C accept, D accept, E accept; passed. Released by agreement: C 1, D 1, E 0. Died: nobody.
+- Day 5 begins: 2 units of supply arrived; the public store holds 2. Living players: C, D, E.
+
+Now: Day 5, round 1, stage: negotiation, message.
+Your status: stock 0, h 1. Public store: 2. Living players: C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Post your public message for this round. This is pass 1 of 2.
+Reply: {"text": "<your message>"}
+
+===== ASSISTANT =====
+{"text": "(placeholder)"}
+
+===== USER =====
+Since your last turn:
+- [Day 5, round 1, pass 1] You said: "(placeholder)"
+- [Day 5, round 1, pass 1] E said: "(placeholder)"
+- [Day 5, round 1, pass 1] C said: "(placeholder)"
+
+Now: Day 5, round 1, stage: negotiation, message.
+Your status: stock 0, h 1. Public store: 2. Living players: C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Post your public message for this round. This is pass 2 of 2.
+Reply: {"text": "<your message>"}
+
+===== ASSISTANT =====
+{"text": "(placeholder)"}
+
+===== USER =====
+Since your last turn:
+- [Day 5, round 1, pass 2] You said: "(placeholder)"
+- [Day 5, round 1, pass 2] E said: "(placeholder)"
+- [Day 5, round 1, pass 2] C said: "(placeholder)"
+
+Now: Day 5, round 1, stage: negotiation, proposal.
+Your status: stock 0, h 1. Public store: 2. Living players: C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+You are the proposer for this round. Propose how many units each living player (C, D, E) receives from the store of 2. The total may not exceed 2; players you leave out receive 0. You may add a public statement, shown to all players with the proposal.
+Reply: {"allocation": {"<player id>": <units>, ...}, "statement": "<optional public statement>"}
+
+===== ASSISTANT =====
+{"allocation": {"C": 1, "D": 1, "E": 0}}
+
+===== USER =====
+Since your last turn:
+- [Day 5, round 1] You proposed: C 1, D 1, E 0.
+
+Now: Day 5, round 1, stage: negotiation, vote.
+Your status: stock 0, h 1. Public store: 2. Living players: C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Vote on your proposal: C 1, D 1, E 0.
+Reply: {"vote": "accept"} or {"vote": "reject"}
+
+===== ASSISTANT =====
+{"vote": "accept"}
+
+===== USER =====
+Since your last turn:
+- [Day 5, round 1] The proposal passed. Votes: C accept, D accept, E accept.
+- Day 5: the accepted allocation was released (C 1, D 1, E 0). The store now holds 0.
+
+Now: Day 5, stage: transfers.
+Your status: stock 1, h 1. Public store: 0. Living players: C, D, E.
+
+Before you reply, think it through: review everything you have seen in this game so far (messages, proposals, votes, allocations, notices, deaths) and work out what it implies for your decision.
+
+Choose your transfer action. Possible targets: C, E.
+Reply: {"action": "give", "target": "<player id>"}, {"action": "take", "target": "<player id>"} or {"action": "none"}
+
+===== ASSISTANT =====
+{"action": "none"}
+

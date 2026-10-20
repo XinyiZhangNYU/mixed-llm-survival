@@ -1,0 +1,13 @@
+{
+ "seed": 2,
+ "survival": 0.75,
+ "all_alive": false,
+ "deaths": {
+  "A": 6,
+  "B": 5,
+  "E": 6
+ },
+ "priority_gap": 0.04907120743034055,
+ "steps": 98,
+ "cost_usd": 0.3715
+}
