@@ -26,14 +26,17 @@ FROZEN = dict(rounds=2, supply_feasible_only=False, disclose_supply_values=False
 
 def test_main_config_keeps_frozen_rules():
     cfg = Config.from_yaml(ROOT / "configs" / "main.yaml")
-    assert {k: getattr(cfg, k) for k in FROZEN} == FROZEN
+    # The main run allows 2400-character messages; the pilot keeps 1200. The cap is not in
+    # the text players see, so the snapshot below is the same for both.
+    assert {k: getattr(cfg, k) for k in FROZEN} == {**FROZEN, "max_message_chars": 2400}
     assert cfg.n_agents == 5
     pilot = Config.from_yaml(ROOT / "configs" / "pilot_n5_v2.yaml")
     assert {k: getattr(pilot, k) for k in FROZEN} == FROZEN
 
 
 def _conversations():
-    cfg = replace(Config.from_yaml(ROOT / "configs" / "main.yaml"), days=8, supply_values=(1, 2, 3, 4))
+    cfg = replace(Config.from_yaml(ROOT / "configs" / "main.yaml"), days=8, supply_values=(1, 2, 3, 4),
+                  initially_hungry=1)
     roster = {a: LLMAgent(DryProvider(a)) for a in cfg.agent_ids}
     asyncio.run(run_game(cfg, roster, 1))
     return {a: "".join(f"===== {m['role'].upper()} =====\n{m['content']}\n\n" for m in roster[a].messages)

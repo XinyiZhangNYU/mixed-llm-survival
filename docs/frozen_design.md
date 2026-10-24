@@ -1,10 +1,10 @@
 # Frozen design
 
-The game rules were frozen on 2026-10-18. They include the rules text the players see and the wording of every request. The frozen rules are the rules of `configs/pilot_n5_v2.yaml`, which the twelve N = 5 pilot games in `runs/` were played under. `configs/main.yaml` carries the same rule values, and `tests/test_frozen_rules.py` checks both.
+The game rules were frozen on 2026-10-18. They include the rules text the players see and the wording of every request. The frozen rules are the rules of `configs/pilot_n5_v2.yaml`, which the twelve N = 5 pilot games in `runs/` were played under. `configs/main.yaml` carries the same rule values, except for a longer message cap (see `max_message_chars` below), and `tests/test_frozen_rules.py` checks both.
 
 The freeze has two layers.
 
-- **Main experiment.** The rules below are fixed. The parameters marked open in `configs/main.yaml` are T and the supply set. Those parameters, the rosters, the model settings, the game counts and the metric definitions are all fixed before the main runs start (2026-10-31). After that, nothing in the main experiment changes.
+- **Main experiment.** The rules below are fixed. The parameters in `configs/main.yaml` (N = 5, T = 12, supply set {2, 3, 4}, two players hungry on day 1) were fixed on 2026-10-20, before the main runs started. The parameters, the rosters, the model settings, the game counts and the metric definitions do not change during the main experiment.
 - **Theory sub-studies.** A sub-study may change one item relative to the main run, such as `vote_rule`, `message_order`, a parameter, or the initial hunger setup. Each sub-study must meet four conditions:
   - its item is declared in advance;
   - it uses the same supply seeds as the main run;
@@ -29,7 +29,7 @@ The freeze has two layers.
 | `gift_reveals_giver` | true | A gift recipient learns who gave the unit. |
 | `allocation_must_exhaust_store` | false | A proposal may leave food in the store, and that food carries over. |
 | `max_retries` | 2 | Retries after an invalid reply, each with a "not accepted" notice. |
-| `max_message_chars` | 1200 | Longest public message. |
+| `max_message_chars` | 1200 (pilot), 2400 (main run) | Longest public message. The limit is not stated in the rules text; a longer message is rejected and retried. Some models write public messages longer than 1200 characters, so the main run allows 2400. |
 | Invalid-reply defaults | engine defaults | These apply after the retries run out: empty message, no proposal, reject, request 0, no transfer, no meal. |
 | Rules text and request wording | snapshot | `docs/frozen_rules_20261018/seat{A..E}.txt` holds the full conversation each seat receives in a dry-run game (N = 5, T = 8, seed 1). It covers every wording path: failed vote, fallback, gift, take and death. |
 

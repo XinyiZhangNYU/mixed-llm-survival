@@ -56,6 +56,9 @@ No keys are stored in this repository. The providers look for credentials in the
 |---|---|
 | `claude` | `ANTHROPIC_API_KEY`, or the file `~/.gt6263/anthropic_api_key` |
 | `deepseek` | `DEEPSEEK_API_KEY`, or the file `~/.gt6263/deepseek_api_key`. `python tools/save_deepseek_key.py` prompts for the key with hidden input, checks it, and saves it. |
+| `glm` | `ZHIPU_API_KEY`, or the file `~/.gt6263/zhipu_api_key`. `python tools/save_api_key.py glm` prompts for the key with hidden input, checks it, and saves it. |
+| `gemini` | `GEMINI_API_KEY`, or the file `~/.gt6263/gemini_api_key`. `python tools/save_api_key.py gemini` prompts for the key with hidden input, checks it, and saves it. |
+| `gemini_vertex` | `VERTEX_API_KEY`, or the file `~/.gt6263/vertex_api_key`, plus the Google Cloud project ID in `GT6263_VERTEX_PROJECT` or the file `~/.gt6263/vertex_project`. Same model, settings and request body as `gemini`, served by Vertex AI. |
 | `openai` | A ChatGPT plan, through OpenAI's Sign in with ChatGPT flow for locally hosted apps. Run `python tools/chatgpt_plan_login.py` once: it opens the browser and stores the tokens in `~/.gt6263/chatgpt_plan/`. Use `start` / `finish URL` to sign in from another device. The logged games used this route. |
 | `openai_api` | `OPENAI_API_KEY`, or the file `~/.gt6263/openai_api_key`. Same model, settings and request body as `openai`, billed to the API account. Run `python tools/check_openai_api.py` first (see [Without a ChatGPT plan](#without-a-chatgpt-plan)). |
 
@@ -65,7 +68,7 @@ No keys are stored in this repository. The providers look for credentials in the
 python -m pytest tests -q
 ```
 
-All 110 tests should pass. `tests/test_frozen_rules.py` plays a dry-run game and compares every seat's full conversation with `docs/frozen_rules_20261018/`, so any change to the rules text or request wording fails the suite.
+All 123 tests should pass. `tests/test_frozen_rules.py` plays a dry-run game and compares every seat's full conversation with `docs/frozen_rules_20261018/`, so any change to the rules text or request wording fails the suite.
 
 To see exactly what the models are sent, without calling any model:
 

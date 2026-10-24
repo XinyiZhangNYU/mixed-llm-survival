@@ -16,8 +16,14 @@ Seat kinds (settings fixed here for the pilot):
   deepseek DeepSeek API, deepseek-flash (DeepSeek-V4.1-Flash-1017), thinking on, reasoning
           effort high (its levels are low/high/max; xhigh maps to high); raw chain of
           thought is logged
+  glm     Zhipu API, glm-5.3-flash, thinking on (always), reasoning effort high (its levels
+          are low/high/max); raw chain of thought is logged
+  gemini  Gemini API (native generateContent endpoint), gemini-3.8-flash, thinking on (always),
+          reasoning effort high (its levels are low/medium/high); thought summaries are logged
+  gemini_vertex  same model and settings as gemini, served by Vertex AI with a Google Cloud
+          API key; the roster tag letter is g for both routes, and meta.json records the route
 
-The cost cap counts Anthropic, DeepSeek and OpenAI API spending (plan calls report no price).
+The cost cap counts Anthropic, DeepSeek, OpenAI, Zhipu and Gemini API spending (plan calls report no price).
 """
 import asyncio
 import json
@@ -27,6 +33,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from sim.agents import LLMAgent  # noqa: E402
 from sim.agents.anthropic_api import AnthropicAPIProvider  # noqa: E402
+from sim.agents.chat_compat import GeminiAPIProvider, GeminiVertexProvider, ZhipuAPIProvider  # noqa: E402
 from sim.agents.deepseek_api import DeepSeekAPIProvider  # noqa: E402
 from sim.agents.openai_api import OpenAIAPIProvider  # noqa: E402
 from sim.agents.openai_plan import OpenAIPlanProvider  # noqa: E402
@@ -43,7 +50,14 @@ DEEPSEEK_PRICE = {"input": 0.15, "cache_hit": 0.003, "output": 0.6}
 # 2026-10-20). Uncached input is priced at the $2.50 cache-write rate instead of the $2.00
 # input rate, so the cap errs high.
 SOL_API_PRICE = {"input": 2.5, "cached_input": 0.10, "output": 10.0}
-TAG = {"claude": "c", "openai": "o", "openai_api": "o", "opus": "p", "astra": "a", "deepseek": "d"}
+# GLM-5.3-Flash, CNY 0.8 input / 0.23 cache hit / 2.8 output (open.bigmodel.cn pricing,
+# 2026-10-20), converted at 7.0 CNY per USD so the cap errs high.
+GLM_PRICE = {"input": 0.8 / 7.0, "cache_hit": 0.23 / 7.0, "output": 2.8 / 7.0}
+# gemini-3.8-flash, standard paid tier (ai.google.dev pricing, 2026-10-20; doubles 2027-01-01).
+# Implicit caching only, so no storage fee. The Vertex route is estimated at the same rates.
+GEMINI_PRICE = {"input": 0.75, "cache_hit": 0.075, "output": 3.75}
+TAG = {"claude": "c", "openai": "o", "openai_api": "o", "opus": "p", "astra": "a", "deepseek": "d",
+       "glm": "z", "gemini": "g", "gemini_vertex": "g"}
 
 
 def provider(kind: str):
@@ -65,6 +79,12 @@ def provider(kind: str):
     if kind == "deepseek":
         return DeepSeekAPIProvider("deepseek-flash", reasoning_effort="high",
                                    price_per_mtok=DEEPSEEK_PRICE)
+    if kind == "glm":
+        return ZhipuAPIProvider("glm-5.3-flash", reasoning_effort="high", price_per_mtok=GLM_PRICE)
+    if kind == "gemini":
+        return GeminiAPIProvider("gemini-3.8-flash", reasoning_effort="high", price_per_mtok=GEMINI_PRICE)
+    if kind == "gemini_vertex":
+        return GeminiVertexProvider("gemini-3.8-flash", reasoning_effort="high", price_per_mtok=GEMINI_PRICE)
     raise ValueError(f"unknown seat kind {kind!r}")
 
 

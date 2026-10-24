@@ -12,6 +12,7 @@ import getpass, json, os, sys, urllib.error, urllib.request
 from pathlib import Path
 
 KEY_FILE = Path.home() / ".gt6263" / "deepseek_api_key"
+SHOWN = "~/.gt6263/deepseek_api_key"   # printed instead of the home-folder path
 BASE = "https://api.deepseek.com"
 
 
@@ -53,14 +54,14 @@ def save(key):
         os.chmod(KEY_FILE, 0o600)
     except OSError:
         pass
-    return True, lines + [f"Saved to {KEY_FILE} ({len(key)} characters)."]
+    return True, lines + [f"Saved to {SHOWN} ({len(key)} characters)."]
 
 
 def main():
     if "--check" in sys.argv:
         key = os.environ.get("DEEPSEEK_API_KEY") or (KEY_FILE.read_text().strip() if KEY_FILE.exists() else "")
         if not key:
-            sys.exit(f"No key in DEEPSEEK_API_KEY or {KEY_FILE}")
+            sys.exit(f"No key in DEEPSEEK_API_KEY or {SHOWN}")
         ok, lines = verify(key)
         print("\n".join(lines))
         sys.exit(0 if ok else 1)

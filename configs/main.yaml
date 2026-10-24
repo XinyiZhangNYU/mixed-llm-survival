@@ -2,9 +2,9 @@
 # the rules of configs/pilot_n5_v2.yaml, checked by tests/test_frozen_rules.py. From here on only
 # the PARAMETER lines below and the models in each seat may change.
 n_agents: 5                  # PARAMETER (fixed at 5)
-days: 15                     # PARAMETER (8 or 15, open)
-supply_values: [2, 3, 4]     # PARAMETER (open; unfiltered {2,3,4}: P(full survival feasible) = 0.85)
-initially_hungry: 1          # PARAMETER
+days: 12                     # PARAMETER (fixed 2026-10-20)
+supply_values: [2, 3, 4]     # PARAMETER (fixed 2026-10-20; unfiltered: P(full survival feasible) = 0.85)
+initially_hungry: 2          # PARAMETER (fixed 2026-10-20; with min supply 2, feasibility is the same as with 1)
 # --- frozen rules ---
 rounds: 2
 supply_feasible_only: false
@@ -20,3 +20,4 @@ votes_public: true
 gift_reveals_giver: true
 allocation_must_exhaust_store: false
 max_retries: 2
+max_message_chars: 2400      # the pilot used 1200 (docs/frozen_design.md)
