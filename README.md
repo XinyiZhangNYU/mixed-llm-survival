@@ -30,10 +30,10 @@ Messages "may be untrue: nothing checks them, and statements and promises are no
 | `sim/agents/` | Player interfaces. These are the model providers (`anthropic_api.py`, `openai_plan.py`, `openai_api.py`, `deepseek_api.py`, `cli.py`) and the scripted reference players (`scripted.py`). |
 | `configs/` | `pilot_n5_v2.yaml` (the pilots: N = 5, T = 8, supply {1, 2, 3, 4}) and `main.yaml` (the main condition, with the same frozen rules). |
 | `prompts/` | `rules_en.md` (the rules template every seat receives) and `claim_coder.md` (the prompt of the blind claim coder). |
-| `runs/` | The twelve pilot games. |
+| `runs/` | The twelve pilot games (`pilot_n5_v2_*`) and the 75 main-run games (`main_*`): 45 games with one model in all five seats (seeds 1, 2, 3, 12, 32 and 56; seeds 1–3 played twice, the second play marked `_rep2`) and 30 mixed-roster games (five seat rotations of the five models, on the same six seeds). |
 | `baselines/` | Scripted references, the ex-post planner bound and Baron–Ferejohn benchmarks, with their saved outputs. |
 | `tools/` | Pilot runner, sign-in and key helpers, the OpenAI API key check, the prompt dry run and viewer, and claim coding and audit tables. |
-| `tests/` | 110 tests: settlement, information redaction, order invariance, replay, rules, providers (mocked), and the frozen-rules snapshot. |
+| `tests/` | 123 tests: settlement, information redaction, order invariance, replay, rules, providers (mocked), and the frozen-rules snapshot. |
 | `docs/` | The frozen design and the frozen prompt snapshot. |
 
 ## Setup
@@ -143,7 +143,8 @@ Priced at standard API rates, the logged games' token counts come to $3.7–4.2 
 | `actions.jsonl` | The accepted action per step. |
 | `checkpoint.json` | Engine state after the last step. |
 | `result.json` | Survival, whether everyone survived, deaths, priority gap, steps and cost. |
-| `claims.jsonl` | Coded self-reports, one per public message (see below). |
+| `claims.jsonl` | Coded self-reports, one per public message, from the DeepSeek coder (pilots only; see below). |
+| `claims_agent.jsonl` | The same coding by a second blind coder (pilots and the 30 one-model main-run games at seeds 1–3; see below). |
 | `replay.html` | Self-contained replay page. |
 
 ## Replays (progress boards)
@@ -209,6 +210,12 @@ python tools/audit_days.py audit_out runs/pilot_n5_v2_*_seed*
 ```
 
 `claims_report.py` compares claims with the truth for each speaker model: h and stock accuracy, denials, broken promises, who receives units by claimed and true need, and how stock is disclosed. `audit_days.py` writes `days.csv` (one row per living player-day), `takes.csv` (one row per take attempt) and `flags.txt` to the output folder. The coded `claims.jsonl` from the logged games is already in each run folder, so the last two commands run offline.
+
+`claims_agent.jsonl` holds a second coding of the same messages, with the same prompt and the same blind input (seat letter and message text only), by gpt-6.1-sol. It covers the pilots and the 30 one-model main-run games on seeds 1–3. Each message the comparison with the truth flags as a lie was checked by hand against the log. To use it, pass the file name:
+
+```bash
+python tools/claims_report.py runs/main_{ccccc,ddddd,ggggg,ooooo,zzzzz}_seed[123]{,_rep2} --claims claims_agent.jsonl
+```
 
 ## Baselines
 

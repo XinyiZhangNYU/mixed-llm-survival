@@ -230,12 +230,9 @@ class GeminiVertexProvider(GeminiAPIProvider):
     project_env = "GT6263_VERTEX_PROJECT"
     project_file = Path.home() / ".gt6263" / "vertex_project"
     prefix = "gemini-vertex"
-
-    def __init__(self, *args, max_http_retries: int = 12, **kwargs):
-        # Vertex shares on-demand capacity across projects and answers HTTP 429 when it is
-        # busy. Twelve retries wait about seven minutes in total, so a busy period delays a
-        # reply instead of turning it into an invalid one that the player is told about.
-        super().__init__(*args, max_http_retries=max_http_retries, **kwargs)
+    # A rate limit (HTTP 429, RESOURCE_EXHAUSTED) stops the game instead of being retried,
+    # so a busy quota never turns into slow or invalid replies inside a logged game.
+    fatal_markers = ("RESOURCE_EXHAUSTED",)
 
     def _endpoint(self) -> str:
         project = os.environ.get(self.project_env)

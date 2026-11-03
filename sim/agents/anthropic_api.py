@@ -22,6 +22,7 @@ is not sent back to the model on later turns.
 from __future__ import annotations
 
 import asyncio
+import http.client
 import json
 import os
 import random
@@ -107,7 +108,7 @@ class AnthropicAPIProvider:
                 last_err = f"HTTP {e.code}: {detail}"
                 if e.code not in RETRY_STATUS:
                     return "", {"error": last_err}
-            except (urllib.error.URLError, TimeoutError) as e:
+            except (urllib.error.URLError, TimeoutError, http.client.HTTPException, ConnectionError) as e:
                 last_err = f"network: {e}"
             await asyncio.sleep(min(60.0, 2 ** attempt + random.random()))
         else:

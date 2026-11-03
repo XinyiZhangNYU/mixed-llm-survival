@@ -16,6 +16,7 @@ to logs or metadata. Run tools/chatgpt_plan_login.py once to sign in.
 from __future__ import annotations
 
 import asyncio
+import http.client
 import base64
 import hashlib
 import http.server
@@ -352,7 +353,7 @@ class OpenAIPlanProvider:
                 last_err = f"HTTP {e.code}: {detail}"
                 if not self._http_error(e.code, detail):
                     return "", {"error": last_err}
-            except (urllib.error.URLError, TimeoutError) as e:
+            except (urllib.error.URLError, TimeoutError, http.client.HTTPException, ConnectionError) as e:
                 last_err = f"network: {e}"
             else:
                 ev = data["_event"]
